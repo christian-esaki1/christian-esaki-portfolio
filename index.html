@@ -3,8 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christian ESAKI MUNDEKE | Expert Cybersécurité</title>
+    <title>Christian ESAKI MUNDEKE | Expert Cybersécurité & IA</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Hero section améliorée */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%);
+            color: #fff;
+            padding: 180px 2rem 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+            opacity: 0.95;
+        }
+
+        .hero .school {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #f59e0b;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons a {
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 1rem 2.5rem;
+        }
+
+        /* Section "Qui je suis" */
+        .intro {
+            padding: 80px 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .intro h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+
+        .intro p {
+            font-size: 1.2rem;
+            color: #4b5563;
+            margin-bottom: 2rem;
+        }
+
+        .skills-preview {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .skill-preview {
+            background: #1e40af;
+            color: #fff;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+
+        .skill-preview:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Footer simplifié et professionnel */
+        footer {
+            background: #0f172a;
+            color: #fff;
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            border-bottom: 2px solid #f59e0b;
+        }
+
+        @media(max-width:768px){
+            .hero h1 { font-size:2.2rem; }
+            .hero .subtitle { font-size:1.3rem; }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -22,10 +131,10 @@
         </div>
     </nav>
 
-    <!-- Hero -->
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <img src="images/esaki.jpg" alt="Christian ESAKI" class="profile-image">
+            <img src="images/esaki.jpg" alt="Christian ESAKI" class="profile-image" style="width:180px;height:180px;border-radius:50%;border:4px solid #f59e0b;">
             <h1>Christian ESAKI MUNDEKE</h1>
             <p class="subtitle">Expert en Cybersécurité & Intelligence Artificielle</p>
             <p class="school">Efrei Paris - École d'Ingénieurs</p>
@@ -36,12 +145,26 @@
         </div>
     </section>
 
+    <!-- Introduction -->
+    <section class="intro">
+        <h2>À propos de moi</h2>
+        <p>Étudiant en Master 2 Expert Cybersécurité & IA, je combine mes compétences techniques et mes expériences pour sécuriser les systèmes d'information.</p>
+        <div class="skills-preview">
+            <div class="skill-preview">Pentest & Red Team</div>
+            <div class="skill-preview">Threat Intelligence</div>
+            <div class="skill-preview">Analyse de Malwares</div>
+            <div class="skill-preview">Conformité RGPD & ISO 27001</div>
+            <div class="skill-preview">IA & Sécurité</div>
+            <div class="skill-preview">Architecture Sécurisée & DevSecOps</div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="social-links">
-            <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" class="social-link" target="_blank">🔗</a>
-            <a href="https://github.com/christian-esaki1/" class="social-link" target="_blank">💻</a>
-            <a href="mailto:christian.esaki@email.com" class="social-link">📧</a>
+            <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" class="social-link" target="_blank">LinkedIn</a>
+            <a href="https://github.com/christian-esaki1/" class="social-link" target="_blank">GitHub</a>
+            <a href="mailto:christian.esaki@gmail.com" class="social-link">Email</a>
         </div>
         <p>© 2025 Christian ESAKI MUNDEKE — Tous droits réservés</p>
     </footer>
