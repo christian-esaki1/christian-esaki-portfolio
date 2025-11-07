@@ -7,7 +7,13 @@
 
   <!-- Sécurité DevSecOps -->
   <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self' js/nav.js; object-src 'none'; frame-ancestors 'none'; base-uri 'self';">
+        content="default-src 'self';
+                 img-src 'self' data: https:;
+                 style-src 'self' 'unsafe-inline';
+                 script-src 'self' 'sha256-XdO4E6Imu4RxuEpiVCktLrguFsGmM1XcQ6x3qozLz/s=';
+                 object-src 'none';
+                 frame-ancestors 'none';
+                 base-uri 'self';">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta name="referrer" content="no-referrer">
@@ -138,11 +144,6 @@
       color: #f59e0b;
       margin-bottom: 1rem;
       font-weight: 700;
-    }
-
-    .competence-card ul {
-      list-style: none;
-      padding-left: 0;
     }
 
     .competence-card li {
