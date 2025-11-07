@@ -80,6 +80,18 @@ body {
     color: var(--white);
 }
 
+/* ========== MENU BURGER ========== */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--white);
+    cursor: pointer;
+    z-index: 1001;
+    padding: 0.5rem;
+}
+
 /* ========== HERO SECTION ========== */
 .hero {
     background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%);
@@ -296,6 +308,26 @@ section {
     margin-bottom: 1rem;
 }
 
+.timeline-content ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.timeline-content li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.6;
+}
+
+.timeline-content li::before {
+    content: "✓";
+    color: var(--success);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
 .timeline-dot {
     position: absolute;
     left: 50%;
@@ -307,6 +339,53 @@ section {
     border: 5px solid var(--white);
     z-index: 2;
     box-shadow: 0 0 0 4px var(--secondary);
+}
+
+/* ========== COMPÉTENCES ========== */
+.competence-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.competence-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.competence-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.competence-card h2 {
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.competence-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.competence-card li {
+    margin-bottom: 0.8rem;
+    padding-left: 0;
+    line-height: 1.6;
+    color: #334155;
+}
+
+/* Option : avec coches vertes (supprimez si vous ne voulez pas) */
+.competence-card li::before {
+    content: "✓ ";
+    color: var(--success);
+    font-weight: bold;
+    margin-right: 0.5rem;
 }
 
 /* ========== SKILLS ========== */
@@ -327,6 +406,11 @@ section {
     color: var(--primary);
     margin-bottom: 1.5rem;
     font-size: 1.4rem;
+}
+
+.skill-list {
+    list-style: none;
+    padding-left: 0;
 }
 
 .skill-item {
@@ -459,6 +543,7 @@ footer {
     justify-content: center;
     gap: 1.5rem;
     margin: 2rem 0;
+    flex-wrap: wrap;
 }
 
 .social-link {
@@ -478,18 +563,6 @@ footer {
 .social-link:hover {
     background: var(--accent);
     transform: translateY(-5px);
-}
-
-/* ========== MENU BURGER ========== */
-.nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.8rem;
-    color: var(--white);
-    cursor: pointer;
-    z-index: 1001;
-    padding: 0.5rem;
 }
 
 /* ========== RESPONSIVE ========== */
@@ -570,21 +643,6 @@ footer {
 }
 
 /* ========== SÉCURITÉ FRONT-END ========== */
-body {
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-/* Autoriser la sélection du texte uniquement dans les zones de contenu */
-section p,
-section li,
-section h1,
-section h2,
-section h3 {
-    -webkit-user-select: text;
-    user-select: text;
-}
-
 img, button {
     -webkit-user-drag: none;
     user-drag: none;
@@ -593,25 +651,4 @@ img, button {
 /* Masquer les iframes (protection clickjacking) */
 iframe {
     display: none !important;
-}
-
-/* ========== LISTE SANS PUCES ========== */
-.competence-card ul,
-.skill-list {
-    list-style: none;
-    padding-left: 0;
-}
-
-.competence-card li {
-    position: relative;
-    padding-left: 1.5rem;
-}
-
-.competence-card li::before {
-    content: "•";
-    color: var(--secondary);
-    position: absolute;
-    left: 0;
-    font-weight: bold;
-    font-size: 1.2rem;
 }
