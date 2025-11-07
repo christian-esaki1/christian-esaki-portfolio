@@ -5,7 +5,112 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Contact | Christian ESAKI</title>
   <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Styles spécifiques à la page Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+      align-items: start;
+    }
+
+    .contact-card {
+      padding: 2rem;
+      border-radius: 1rem;
+      background: linear-gradient(145deg, #ffffff, #f3f4f6);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    }
+
+    .contact-card strong {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+      color: #1f2937;
+    }
+
+    .contact-card a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    .contact-card a:hover {
+      text-decoration: underline;
+    }
+
+    form label {
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      background-color: #f9fafb;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    form input:focus, form textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+      outline: none;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background-color: #2563eb;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #1e40af;
+      transform: scale(1.03);
+    }
+
+    .contact-info {
+      line-height: 1.6;
+    }
+
+    .map-container {
+      margin-top: 2rem;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    iframe {
+      border: 0;
+      width: 100%;
+      height: 300px;
+    }
+
+    @media (max-width: 600px) {
+      .contact-card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <!-- Navigation -->
   <nav class="navbar">
@@ -25,38 +130,45 @@
   <main>
     <section class="section container">
       <h1 class="section-title">Contact</h1>
-      <p class="section-subtitle">Pour toute proposition de CDI, mission ou collaboration</p>
+      <p class="section-subtitle">
+        Vous souhaitez échanger sur une opportunité de CDI, une mission en cybersécurité ou une collaboration technique ?
+        N’hésitez pas à me contacter via le formulaire ci-dessous ou directement sur mes réseaux professionnels.
+      </p>
 
       <div class="contact-grid">
-        <div class="contact-card card">
-          <div>
-            <strong>Contact professionnel</strong>
-            <p>Email: <a href="mailto:christian.esaki@gmail.com">christian.esaki@gmail.com</a></p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" target="_blank" rel="noopener noreferrer">Profil LinkedIn</a></p>
+        <!-- Carte d'informations de contact -->
+        <div class="contact-card contact-info">
+          <strong>Coordonnées professionnelles</strong>
+          <p>📧 <a href="mailto:christian.esaki@gmail.com">christian.esaki@gmail.com</a></p>
+          <p>🔗 <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" target="_blank">LinkedIn : christian-esaki-mundeke</a></p>
+          <p>💻 <a href="https://github.com/christian-esaki1/" target="_blank">GitHub : Christian-Esaki1</a></p>
+          <p>📍 Basé à Paris, France</p>
+
+          <div class="map-container">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.999679223757!2d2.365247515674386!3d48.85922537928738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06a1b3c5%3A0x16f3eb1db4ebc84c!2sParis!5e0!3m2!1sfr!2sfr!4v1634590000000!5m2!1sfr!2sfr"
+              allowfullscreen="" loading="lazy"></iframe>
           </div>
         </div>
 
-        <form class="contact-card card" method="POST" action="https://formspree.io/f/your-id">
-          <!-- Replace action with your Formspree endpoint or backend endpoint -->
+        <!-- Formulaire de contact -->
+        <form class="contact-card" method="POST" action="https://formspree.io/f/mrbgzvvg">
           <div class="form-group">
             <label for="name">Nom complet</label>
-            <input id="name" name="name" type="text" required>
+            <input id="name" name="name" type="text" placeholder="Votre nom" required>
           </div>
 
           <div class="form-group">
             <label for="email">Adresse email</label>
-            <input id="email" name="email" type="email" required>
+            <input id="email" name="email" type="email" placeholder="exemple@email.com" required>
           </div>
 
           <div class="form-group">
             <label for="message">Message</label>
-            <textarea id="message" name="message" rows="6" required></textarea>
+            <textarea id="message" name="message" rows="6" placeholder="Votre message..." required></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary">Envoyer</button>
-          <p style="font-size:0.9rem;color:#6b7280;margin-top:0.8rem;">
-            Si tu n'as pas de backend prêt, remplace l'attribut <code>action</code> par ton endpoint Formspree (gratuit).
-          </p>
+          <button type="submit" class="btn-primary">📨 Envoyer le message</button>
         </form>
       </div>
     </section>
@@ -64,8 +176,8 @@
 
   <footer>
     <div class="social-links">
-      <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" class="social-link" target="_blank" rel="noopener noreferrer" title="LinkedIn">in</a>
-      <a href="https://github.com/christian-esaki1/" class="social-link" target="_blank" rel="noopener noreferrer" title="GitHub">GH</a>
+      <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" class="social-link" target="_blank" title="LinkedIn">in</a>
+      <a href="https://github.com/christian-esaki1/" class="social-link" target="_blank" title="GitHub">GH</a>
       <a href="mailto:christian.esaki@gmail.com" class="social-link" title="Email">@</a>
     </div>
     <p>© 2025 Christian ESAKI MUNDEKE — Tous droits réservés</p>
