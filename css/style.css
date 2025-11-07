@@ -27,6 +27,19 @@
     box-shadow: -4px 0 25px rgba(0, 0, 0, 0.25);
     padding: 2rem;
     z-index: 1000;
+    .competence-card ul {
+  list-style: none; /* <-- supprime les puces par défaut */
+  padding-left: 0;  /* <-- supprime le retrait à gauche */
+}
+
+.competence-card li::before {
+  content: "•";      /* garde le point bleu personnalisé */
+  color: #1e40af;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
     transition: all 0.4s ease-in-out;
   }
 
