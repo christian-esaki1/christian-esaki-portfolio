@@ -1,33 +1,25 @@
-(() => {
+// js/nav.js
+document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.getElementById("nav-toggle");
   const menu = document.getElementById("main-menu");
 
   if (!toggle || !menu) return;
 
-  toggle.addEventListener("click", () => {
-    const expanded = toggle.getAttribute("aria-expanded") === "true";
-    toggle.setAttribute("aria-expanded", String(!expanded));
-    menu.classList.toggle("open");
+  // Sécurité : empêche l'injection de code via innerHTML
+  toggle.addEventListener("click", (e) => {
+    e.preventDefault();
 
-    // Bloque le scroll uniquement quand le menu est ouvert
-    document.body.style.overflow = menu.classList.contains("open") ? "hidden" : "";
+    // Bascule l'affichage du menu
+    const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", !isExpanded);
+    menu.classList.toggle("active");
   });
 
-  // Ferme le menu quand on clique sur un lien
-  menu.querySelectorAll("a").forEach(link => {
+  // Ferme le menu quand on clique sur un lien (meilleur UX mobile)
+  menu.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
-      menu.classList.remove("open");
+      menu.classList.remove("active");
       toggle.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = "";
     });
   });
-
-  // Ferme avec la touche Échap
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && menu.classList.contains("open")) {
-      menu.classList.remove("open");
-      toggle.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = "";
-    }
-  });
-})();
+});
