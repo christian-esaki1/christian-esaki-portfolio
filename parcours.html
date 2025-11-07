@@ -1,87 +1,254 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Parcours | Christian ESAKI</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* --- Styles de base --- */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0b0c10;
+      color: #eaeaea;
+    }
+
+    /* --- Navigation --- */
+    .navbar {
+      background: #101820;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff914d;
+      text-decoration: none;
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+    }
+
+    .nav-menu li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-menu li a:hover,
+    .nav-menu li a.active {
+      color: #ff914d;
+    }
+
+    /* --- Menu burger --- */
+    .burger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .burger div {
+      width: 25px;
+      height: 3px;
+      background: white;
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: #101820;
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        text-align: center;
+        padding: 1rem 0;
+      }
+
+      .nav-menu.active {
+        display: flex;
+      }
+
+      .burger {
+        display: flex;
+      }
+    }
+
+    /* --- Timeline --- */
+    .section {
+      padding: 4rem 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      color: #ff914d;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #c5c6c7;
+      margin-bottom: 3rem;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .timeline-dot {
+      width: 16px;
+      height: 16px;
+      background: #ff914d;
+      border-radius: 50%;
+      margin-top: 5px;
+    }
+
+    .timeline-content {
+      background: #1a1f2b;
+      border-left: 4px solid #ff914d;
+      padding: 1.5rem;
+      border-radius: 10px;
+      flex-grow: 1;
+    }
+
+    .timeline-date {
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    h3, h4 {
+      margin: 0.5rem 0;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #0b0c10;
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .social-link {
+      color: #ff914d;
+      font-weight: bold;
+      text-decoration: none;
+      transition: transform 0.3s;
+    }
+
+    .social-link:hover {
+      transform: scale(1.1);
+    }
+  </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="logo">Christian ESAKI</a>
-      <ul class="nav-menu">
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="parcours.html" class="active">Parcours</a></li>
-        <li><a href="competences.html">Compétences</a></li>
-        <li><a href="projets.html">Projets</a></li>
-        <li><a href="certifications.html">Certifications</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+  <!-- Navigation sécurisée -->
+  <nav class="navbar" role="navigation">
+    <a href="index.html" class="logo" rel="noopener noreferrer">Christian ESAKI</a>
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="parcours.html" class="active">Parcours</a></li>
+      <li><a href="competences.html">Compétences</a></li>
+      <li><a href="projets.html">Projets</a></li>
+      <li><a href="certifications.html">Certifications</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="burger" id="burger">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
   </nav>
 
   <main>
-    <section class="parcours-efrei section">
-      <div class="hero-content container">
-        <h1 class="section-title">Mon Parcours </h1>
-        <p class="section-subtitle">Formation en Master of Science Cybersécurité et Intelligence Artificielle</p>
+    <section class="section">
+      <h1 class="section-title">Mon Parcours</h1>
+      <p class="section-subtitle">De Kinshasa à Paris — Une évolution vers l’expertise en cybersécurité et IA</p>
 
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content card">
-              <span class="timeline-date">2025 - 2026</span>
-              <h3>Master 2 - Cybersécurité & IA</h3>
-              <h4>Efrei Paris, Villejuif</h4>
-              <ul>
-                <li>SOC</li>
-                 <li>Gestion des Identités (Logs-SIEM)</li>
-                 <li>Audit de sécurité & Tests d'Intrusion</li>
-                 <li>Forensics</li>
-                <li>PCA/PRA</li>
-                 <li>Architecture sécurisée</li>
-                <li>IA appliquée à la cybersécurité</li>
-                <li>Veille Technologique</li>
-                <li>Conformité RGPD & ISO 27001</li>
-              </ul>
-            </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2025 - 2026</span>
+            <h3>Master 2 - Cybersécurité & Intelligence Artificielle</h3>
+            <h4>Efrei Paris, Villejuif</h4>
+            <ul>
+              <li>Red Team, Forensics, SOC & SIEM</li>
+              <li>Architecture Sécurisée, DevSecOps</li>
+              <li>Analyse de Malware & Threat Intelligence</li>
+              <li>Conformité RGPD & ISO 27001</li>
+            </ul>
           </div>
+        </div>
 
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content card">
-              <span class="timeline-date">2024 - 2025</span>
-              <h3>Master 1 - Cybersécurité & IA</h3>
-              <h4>Efrei Paris, Villejuif</h4>
-              <ul>
-                <li>Cloud Computing et sécurité</li>
-                <li>Cryptographie et sécurité réseau</li>
-                <li>DevSecOps</li>
-                <li>Gestion d'un projet de sécurité</li>
-                <li>Hardening d'OS avancé</li>
-                <li>Projet : Sécurisation d'un SI</li>
-                <li>Pentest</li>
-                <li>Sécurité avec Python</li>
-                <li>Data analyse</li>
-              </ul>
-            </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2024 - 2025</span>
+            <h3>Master 1 - Cybersécurité & IA</h3>
+            <h4>Efrei Paris</h4>
+            <ul>
+              <li>Cryptographie, Sécurité Réseau, Pentest</li>
+              <li>Gestion de Projet Sécurité</li>
+              <li>Data Science appliquée à la cybersécurité</li>
+            </ul>
           </div>
+        </div>
 
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content card">
-              <span class="timeline-date">2017 - 2022</span>
-              <h3>Cycle en Sciences Informatiques (Bac +5)</h3>
-              <h4>Université Protestante au Congo</h4>
-              <ul>
-                <li>Fondamentaux de l'informatique et programmation</li>
-                <li>Réseaux et systèmes d'exploitation</li>
-                <li>Bases de données et développement web</li>
-                <li>Introduction à la cybersécurité</li>
-              </ul>
-            </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2017 - 2022</span>
+            <h3>Bachelor & Master en Sciences Informatiques</h3>
+            <h4>Université Protestante au Congo</h4>
+            <ul>
+              <li>Programmation & Réseaux</li>
+              <li>Base de données, Développement Web</li>
+              <li>Introduction à la Sécurité Informatique</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -92,9 +259,21 @@
     <div class="social-links">
       <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" class="social-link" target="_blank" rel="noopener noreferrer" title="LinkedIn">in</a>
       <a href="https://github.com/christian-esaki1/" class="social-link" target="_blank" rel="noopener noreferrer" title="GitHub">GH</a>
-      <a href="mailto:christia.esaki@gmail.com" class="social-link" title="Email">@</a>
+      <a href="mailto:christian.esaki@gmail.com" class="social-link" title="Email">@</a>
     </div>
     <p>© 2025 Christian ESAKI MUNDEKE — Tous droits réservés</p>
   </footer>
+
+  <!-- Script menu burger sécurisé -->
+  <script>
+    (function() {
+      const burger = document.getElementById('burger');
+      const navMenu = document.getElementById('nav-menu');
+      burger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        burger.classList.toggle('open');
+      });
+    })();
+  </script>
 </body>
 </html>
