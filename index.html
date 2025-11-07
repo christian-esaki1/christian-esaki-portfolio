@@ -6,75 +6,166 @@
     <title>Christian ESAKI MUNDEKE | Expert Cybersécurité & IA</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Hero section améliorée */
+        /* Reset & base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background-color: #f9fafb;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #0f172a;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .logo {
+            color: #f59e0b;
+            font-weight: 900;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: #f59e0b;
+        }
+
+        /* Hero */
         .hero {
             background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%);
             color: #fff;
-            padding: 180px 2rem 100px;
             text-align: center;
-            position: relative;
+            padding: 140px 1.5rem 100px;
+        }
+
+        .hero img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 4px solid #f59e0b;
+            margin-bottom: 1rem;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 2.6rem;
             font-weight: 900;
             margin-bottom: 0.5rem;
         }
 
         .hero .subtitle {
-            font-size: 1.8rem;
-            margin-bottom: 0.8rem;
-            opacity: 0.95;
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+            font-weight: 500;
         }
 
         .hero .school {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #f59e0b;
-            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            color: #fbbf24;
+            margin-bottom: 1.8rem;
         }
 
-        .cta-buttons a {
-            font-size: 1rem;
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
             font-weight: 700;
-            padding: 1rem 2.5rem;
+            transition: all 0.3s ease-in-out;
         }
 
-        /* Section "Qui je suis" */
+        .btn-primary {
+            background: #f59e0b;
+            color: #0f172a;
+        }
+
+        .btn-primary:hover {
+            background: #fbbf24;
+        }
+
+        .btn-outline {
+            border: 2px solid #f59e0b;
+            color: #f59e0b;
+        }
+
+        .btn-outline:hover {
+            background: #f59e0b;
+            color: #0f172a;
+        }
+
+        /* Intro */
         .intro {
-            padding: 80px 2rem;
-            max-width: 1000px;
+            max-width: 950px;
             margin: 0 auto;
+            padding: 70px 1.5rem;
             text-align: center;
         }
 
         .intro h2 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 800;
-            color: #0f172a;
             margin-bottom: 1rem;
+            color: #0f172a;
         }
 
         .intro p {
-            font-size: 1.2rem;
-            color: #4b5563;
-            margin-bottom: 2rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #475569;
+            margin-bottom: 2.5rem;
         }
 
         .skills-preview {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 1rem;
         }
 
         .skill-preview {
             background: #1e40af;
             color: #fff;
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
+            padding: 0.9rem 1.2rem;
+            border-radius: 10px;
             font-weight: 600;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            font-size: 0.95rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
             transition: transform 0.3s;
         }
 
@@ -82,11 +173,11 @@
             transform: translateY(-5px);
         }
 
-        /* Footer simplifié et professionnel */
+        /* Footer */
         footer {
             background: #0f172a;
             color: #fff;
-            padding: 2.5rem 2rem;
+            padding: 2.5rem 1.5rem;
             text-align: center;
         }
 
@@ -95,6 +186,7 @@
             justify-content: center;
             gap: 1.5rem;
             margin-bottom: 1rem;
+            flex-wrap: wrap;
         }
 
         .social-link {
@@ -109,12 +201,51 @@
             border-bottom: 2px solid #f59e0b;
         }
 
-        @media(max-width:768px){
-            .hero h1 { font-size:2.2rem; }
-            .hero .subtitle { font-size:1.3rem; }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .intro h2 {
+                font-size: 1.8rem;
+            }
+
+            .intro p {
+                font-size: 1rem;
+            }
+
+            .skills-preview {
+                gap: 0.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 120px 1rem 80px;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            .skill-preview {
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -134,28 +265,28 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <img src="images/esaki.jpg" alt="Christian ESAKI" class="profile-image" style="width:180px;height:180px;border-radius:50%;border:4px solid #f59e0b;">
+            <img src="images/esaki.jpg" alt="Christian ESAKI">
             <h1>Christian ESAKI MUNDEKE</h1>
             <p class="subtitle">Expert en Cybersécurité & Intelligence Artificielle</p>
             <p class="school">Efrei Paris - École d'Ingénieurs</p>
             <div class="cta-buttons">
-                <a href="contact.html" class="btn btn-primary">En Recherche d'un CDI</a>
-                <a href="parcours.html" class="btn btn-outline">Découvrir mon Parcours</a>
+                <a href="contact.html" class="btn btn-primary">Disponible pour un CDI</a>
+                <a href="parcours.html" class="btn btn-outline">Découvrir mon parcours</a>
             </div>
         </div>
     </section>
 
-    <!-- Introduction -->
+    <!-- Intro Section -->
     <section class="intro">
         <h2>À propos de moi</h2>
-        <p>Étudiant en Master 2 Expert Cybersécurité & IA, je combine mes compétences techniques et mes expériences pour sécuriser les systèmes d'information.</p>
+        <p>Étudiant en Master 2 Expert Cybersécurité & Intelligence Artificielle à Efrei Paris, je combine compétences techniques et vision stratégique pour renforcer la sécurité des systèmes d’information, anticiper les cybermenaces et développer des solutions d’IA appliquées à la cybersécurité.</p>
         <div class="skills-preview">
             <div class="skill-preview">Pentest & Red Team</div>
             <div class="skill-preview">Threat Intelligence</div>
             <div class="skill-preview">Analyse de Malwares</div>
             <div class="skill-preview">Conformité RGPD & ISO 27001</div>
             <div class="skill-preview">IA & Sécurité</div>
-            <div class="skill-preview">Architecture Sécurisée & DevSecOps</div>
+            <div class="skill-preview">Architecture Sécurisée</div>
         </div>
     </section>
 
