@@ -23,12 +23,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-const burger = document.getElementById('burger');
-const menu = document.getElementById('nav-menu');
+<script>
+(function(){
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('nav-menu');
 
-if(burger && menu){
-  burger.addEventListener('click', () => {
-    const isOpen = menu.classList.toggle('show');
-    burger.setAttribute('aria-expanded', isOpen);
-  });
-}
+  if(burger && menu){
+    burger.addEventListener('click', () => {
+      menu.classList.toggle('show');
+      burger.setAttribute('aria-expanded', menu.classList.contains('show'));
+    });
+
+    // Fermer le menu après un clic sur un lien (mobile)
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(window.innerWidth <= 900){
+          menu.classList.remove('show');
+          burger.setAttribute('aria-expanded','false');
+        }
+      });
+    });
+  }
+})();
+</script>
