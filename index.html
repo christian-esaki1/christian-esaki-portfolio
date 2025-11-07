@@ -46,6 +46,7 @@
       display: flex;
       list-style: none;
       gap: 1.5rem;
+      transition: all 0.4s ease-in-out;
     }
 
     .nav-links a {
@@ -73,6 +74,7 @@
       flex-direction: column;
       cursor: pointer;
       gap: 5px;
+      z-index: 1100;
     }
 
     .burger div {
@@ -80,6 +82,16 @@
       height: 3px;
       background: white;
       transition: 0.3s;
+    }
+
+    .burger.active div:nth-child(1) {
+      transform: rotate(45deg) translateY(8px);
+    }
+    .burger.active div:nth-child(2) {
+      opacity: 0;
+    }
+    .burger.active div:nth-child(3) {
+      transform: rotate(-45deg) translateY(-8px);
     }
 
     /* --- HERO --- */
@@ -94,8 +106,8 @@
     }
 
     .hero img {
-      width: 250px;
-      height: 250px;
+      width: 260px;
+      height: 260px;
       border-radius: 50%;
       border: 6px solid #f59e0b;
       box-shadow: 0 0 40px rgba(245,158,11,0.6);
@@ -116,7 +128,7 @@
     }
 
     .hero p {
-      max-width: 650px;
+      max-width: 700px;
       line-height: 1.6;
       font-size: 1.1rem;
       color: #f1f5f9;
@@ -234,15 +246,27 @@
       .nav-links {
         display: none;
         flex-direction: column;
-        background: #0f172a;
+        background: rgba(15, 23, 42, 0.97);
         position: absolute;
         top: 70px;
         right: 0;
         width: 100%;
         text-align: center;
         padding: 1rem 0;
+        backdrop-filter: blur(8px);
       }
-      .nav-links.show { display: flex; }
+      .nav-links.show { 
+        display: flex;
+        animation: slideIn 0.4s ease-in-out;
+      }
+      @keyframes slideIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .nav-links a {
+        padding: 1rem;
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -308,19 +332,23 @@
     burger.addEventListener('click', () => {
       navLinks.classList.toggle('show');
       burger.classList.toggle('active');
+      document.body.classList.toggle('no-scroll');
     });
 
-    // --- Sécurité JS basique (évite certains XSS inline) ---
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('a').forEach(a => {
-        a.setAttribute('rel', 'noopener noreferrer');
+    // Fermer le menu après un clic sur un lien
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+        burger.classList.remove('active');
+        document.body.classList.remove('no-scroll');
       });
     });
 
-    // --- Lien actif ---
-    const currentPage = window.location.pathname.split('/').pop();
-    document.querySelectorAll('nav ul a').forEach(link => {
-      if (link.getAttribute('href') === currentPage) link.classList.add('active');
+    // --- Sécurité JS basique ---
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('a[target="_blank"]').forEach(a => {
+        a.setAttribute('rel', 'noopener noreferrer');
+      });
     });
   </script>
 </body>
