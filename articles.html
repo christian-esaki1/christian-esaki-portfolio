@@ -3,82 +3,120 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Articles & Publications | Christian ESAKI</title>
-  <link rel="stylesheet" href="styles.css"> <!-- utilise ton CSS principal -->
+  <title>Publications | Christian ESAKI</title>
+  <link rel="stylesheet" href="styles.css">
   <style>
-    .articles-container {
+    body {
+      background: #f9fafb;
+      color: #0f172a;
+    }
+    .publications-container {
       max-width: 1100px;
-      margin: 80px auto 40px;
+      margin: 90px auto 40px;
       padding: 0 1.5rem;
     }
-    .article-card {
+    .pub-card {
       background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.10);
-      margin-bottom: 2.5rem;
-      padding: 2rem 2rem 1rem 2rem;
-      position: relative;
-    }
-    .article-card h2 {
-      font-size: 1.5rem;
-      color: #0f172a;
-      margin-bottom: 0.7rem;
-    }
-    .article-card .meta {
-      font-size: 0.95rem;
-      color: #64748b;
-      margin-bottom: 1rem;
-    }
-    .article-card .video {
-      margin: 1rem 0;
-    }
-    .like-btn, .dl-btn {
-      background: #f59e0b;
-      color: white;
-      border: none;
       border-radius: 18px;
-      padding: 0.45rem 1.2rem;
-      margin-right: 0.6rem;
+      box-shadow: 0 7px 28px rgba(30,64,175,0.08);
+      margin-bottom: 2.8rem;
+      padding: 2.3rem 2.1rem 1.3rem 2.1rem;
+      position: relative;
+      transition: box-shadow 0.2s, transform 0.22s;
+    }
+    .pub-card:hover {
+      box-shadow: 0 12px 40px rgba(30,64,175,0.18);
+      transform: translateY(-7px) scale(1.02);
+    }
+    .pub-title {
+      font-size: 1.45rem;
+      color: #1e40af;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+    .pub-meta {
+      font-size: 0.97rem;
+      color: #64748b;
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+    .pub-description {
+      margin-bottom: 1.2rem;
+      color: #334155;
+    }
+    .pub-media {
+      margin-bottom: 1.0rem;
+    }
+    .pub-media iframe, .pub-media video, .pub-media img {
+      max-width: 98%;
+      border-radius: 8px;
+      margin: 0.5rem 0;
+    }
+    .dl-btn {
+      background: #10b981;
+      color: #fff;
+      border: none;
+      padding: 0.45rem 1.28rem;
+      border-radius: 17px;
       font-weight: 600;
+      margin-right: 0.7rem;
+      text-decoration: none;
       cursor: pointer;
-      transition: background 0.18s;
+      transition: background 0.19s;
     }
-    .like-btn:hover, .dl-btn:hover {
-      background: #d97706;
+    .dl-btn:hover { background: #059669; }
+    .like-btn {
+      background: #f59e0b;
+      color: #fff;
+      border: none;
+      border-radius: 17px;
+      padding: 0.45rem 1.25rem;
+      margin-right: 0.7rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.19s;
     }
+    .like-btn:hover { background: #d97706; }
     .comments-section {
       margin-top: 1.5rem;
-      padding-top: 1.3rem;
       border-top: 1px solid #e5e7eb;
+      padding-top: 1.1rem;
     }
     .comment {
-      margin-bottom: 1.1rem;
+      margin-bottom: 1rem;
       background: #f8fafc;
       border-radius: 8px;
-      padding: 0.75rem 1rem;
+      padding: 0.65rem 1rem;
     }
     .comment-form textarea {
       width: 100%;
-      border-radius: 8px;
+      border-radius: 7px;
       border: 1px solid #d1d5db;
       resize: vertical;
-      min-height: 50px;
+      min-height: 52px;
       margin-bottom: 0.7rem;
       padding: 0.5rem;
       font-family: inherit;
+      font-size: 1rem;
     }
     .comment-form button {
       background: #1e40af;
-      color: white;
+      color: #fff;
       border: none;
-      padding: 0.5rem 1.5rem;
+      padding: 0.5rem 1.4rem;
       border-radius: 8px;
       font-weight: 600;
       cursor: pointer;
       transition: background 0.2s;
     }
-    .comment-form button:hover {
-      background: #0f172a;
+    .comment-form button:hover { background: #0f172a; }
+    @media (max-width: 800px) {
+      .publications-container { padding: 0 0.35rem; }
+      .pub-card { padding: 1.2rem 0.8rem; }
+    }
+    @media (max-width: 600px) {
+      .pub-title { font-size: 1rem; }
+      .publications-container { margin: 75px auto 24px; }
     }
   </style>
 </head>
@@ -86,7 +124,6 @@
   <nav class="site-nav">
     <div class="nav-inner">
       <a href="index.html" class="brand">Christian ESAKI</a>
-      <!-- Place ici le bouton burger et le menu si besoin -->
       <ul class="nav-menu">
         <li><a href="index.html">Accueil</a></li>
         <li><a href="parcours.html">Parcours</a></li>
@@ -99,37 +136,66 @@
     </div>
   </nav>
 
-  <main class="articles-container">
-    <h1 class="section-title" style="text-align:center;">Articles & Publications</h1>
-    <p class="section-subtitle" style="text-align:center;">Retrouvez mes derniers articles, papiers scientifiques, retours techniques, et vidéos avec possibilités de commentaires.</p>
-    
-    <!-- Exemple d'article -->
-    <div class="article-card">
-      <h2>Cybersécurité des PME en Afrique centrale : enjeux et bonnes pratiques</h2>
-      <div class="meta">Publié le 28 octobre 2025 | Catégorie : Recherche | <a href="#">Télécharger PDF</a></div>
-      <p>Résumé : Analyse des risques principaux rencontrés par les PME de la région, solutions adaptées, outils gratuits recommandés et perspectives pour une meilleure gouvernance cyber.</p>
-      
-      <!-- Vidéo intégrée optionnelle -->
-      <div class="video">
-        <iframe width="400" height="225" src="https://www.youtube.com/embed/VIDEOCODE" frameborder="0" allowfullscreen></iframe>
+  <main class="publications-container">
+    <h1 class="section-title" style="text-align:center;">Publications & Médias</h1>
+    <p class="section-subtitle" style="text-align:center;">Retrouvez ici tous mes articles, papiers scientifiques, vidéos et présentations à télécharger, commenter et aimer.</p>
+
+    <!-- Exemple Publication 1 (PDF) -->
+    <div class="pub-card">
+      <div class="pub-title">Cybersécurité PME en Afrique : méthodes & solutions</div>
+      <div class="pub-meta">Publié le 1 nov. 2025 | Format : PDF</div>
+      <div class="pub-description">Une étude approfondie sur l’adaptation des méthodes cyber pour les petites entreprises africaines.</div>
+      <div class="pub-media">
+        <embed src="exemple-article.pdf" type="application/pdf" width="100%" height="250px"/>
       </div>
-      
+      <a href="exemple-article.pdf" class="dl-btn" download>Télécharger</a>
       <button class="like-btn" onclick="likeArticle(this)">👍 J'aime <span class="count">0</span></button>
-      <a href="exemple-article.pdf" class="dl-btn" download>Télécharger l’article</a>
-      
       <div class="comments-section">
-        <h3>Commentaires</h3>
-        <div class="comments-list">
-          <!-- Les commentaires JS s’ajouteront ici -->
-        </div>
+        <div class="comments-list"></div>
         <form class="comment-form" onsubmit="addComment(event, this)">
-          <textarea required placeholder="Laissez un commentaire..."></textarea>
-          <button type="submit">Publier</button>
+          <textarea required placeholder="Laissez un commentaire…"></textarea>
+          <button type="submit">Commenter</button>
         </form>
       </div>
     </div>
 
-    <!-- Ajouter d'autres <div class="article-card"> pour d’autres articles -->
+    <!-- Exemple Publication 2 (Vidéo) -->
+    <div class="pub-card">
+      <div class="pub-title">Replay du Webinaire - Gouvernance Cyber 2025</div>
+      <div class="pub-meta">Publié le 26 oct. 2025 | Format : Vidéo</div>
+      <div class="pub-description">Conférence vidéo intégrale sur la gouvernance cyber des organisations francophones.</div>
+      <div class="pub-media">
+        <iframe width="400" height="225" src="https://www.youtube.com/embed/VIDEOCODE" allowfullscreen title="Vidéo Webinaire"></iframe>
+      </div>
+      <button class="like-btn" onclick="likeArticle(this)">👍 J'aime <span class="count">0</span></button>
+      <div class="comments-section">
+        <div class="comments-list"></div>
+        <form class="comment-form" onsubmit="addComment(event, this)">
+          <textarea required placeholder="Votre avis ou question…"></textarea>
+          <button type="submit">Commenter</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Exemple Publication 3 (Slides/Images) -->
+    <div class="pub-card">
+      <div class="pub-title">Présentation : Gestion des risques numériques</div>
+      <div class="pub-meta">Publié le 15 oct. 2025 | Format : Slides</div>
+      <div class="pub-description">Télécharge les slides utilisés lors de la conférence sur la gestion des risques numériques avec des exemples congolais.</div>
+      <div class="pub-media">
+        <img src="exemple-slide.jpg" alt="Slide gestion des risques" width="96%">
+      </div>
+      <a href="exemple-slide.pdf" class="dl-btn" download>Télécharger</a>
+      <button class="like-btn" onclick="likeArticle(this)">👍 J'aime <span class="count">0</span></button>
+      <div class="comments-section">
+        <div class="comments-list"></div>
+        <form class="comment-form" onsubmit="addComment(event, this)">
+          <textarea required placeholder="Votre commentaire…"></textarea>
+          <button type="submit">Commenter</button>
+        </form>
+      </div>
+    </div>
+    <!-- Ajoute d'autres .pub-card ici pour chaque nouvelle publication -->
   </main>
 
   <footer>
