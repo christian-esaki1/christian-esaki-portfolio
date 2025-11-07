@@ -5,24 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Compétences | Christian ESAKI</title>
 
-  <!-- Sécurité DevSecOps -->
-  <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self';
-                 img-src 'self' data: https:;
-                 style-src 'self' 'unsafe-inline';
-                 script-src 'self' 'sha256-XdO4E6Imu4RxuEpiVCktLrguFsGmM1XcQ6x3qozLz/s=';
-                 object-src 'none';
-                 frame-ancestors 'none';
-                 base-uri 'self';">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="X-Frame-Options" content="DENY">
-  <meta name="referrer" content="no-referrer">
-  <meta name="robots" content="index,follow">
-
   <style>
     /* --- GLOBAL --- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
       font-family: 'Poppins', Arial, sans-serif;
       background: #f9fafb;
@@ -30,7 +15,6 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
-
     a { text-decoration: none; color: inherit; }
 
     /* --- NAVBAR --- */
@@ -46,7 +30,6 @@
       z-index: 1000;
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
-
     .nav-inner {
       display: flex;
       justify-content: space-between;
@@ -55,26 +38,23 @@
       max-width: 1200px;
       padding: 1rem 2rem;
     }
-
     .brand {
       font-size: 1.6rem;
       font-weight: 800;
       color: #f59e0b;
     }
-
     .nav-menu {
       display: flex;
       gap: 1.5rem;
       list-style: none;
     }
-
     .nav-menu a {
       color: white;
       font-weight: 600;
-      transition: 0.3s;
       position: relative;
+      padding: 0.3rem 0.5rem;
+      transition: 0.3s;
     }
-
     .nav-menu a:hover::after,
     .nav-menu a.active::after {
       content: '';
@@ -104,19 +84,8 @@
       padding: 0 1.5rem;
       text-align: center;
     }
-
-    .section-title {
-      font-size: 2.3rem;
-      font-weight: 800;
-      color: #0f172a;
-      margin-bottom: 0.5rem;
-    }
-
-    .section-subtitle {
-      color: #475569;
-      font-size: 1.1rem;
-      margin-bottom: 2.5rem;
-    }
+    .section-title { font-size: 2.3rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; }
+    .section-subtitle { color: #475569; font-size: 1.1rem; margin-bottom: 2.5rem; }
 
     .competence-grid {
       display: grid;
@@ -124,7 +93,6 @@
       gap: 2rem;
       justify-content: center;
     }
-
     .competence-card {
       background: #fff;
       padding: 2rem 1.5rem;
@@ -133,19 +101,11 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       text-align: left;
     }
-
     .competence-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     }
-
-    .competence-card h2 {
-      font-size: 1.4rem;
-      color: #f59e0b;
-      margin-bottom: 1rem;
-      font-weight: 700;
-    }
-
+    .competence-card h2 { font-size: 1.4rem; color: #f59e0b; margin-bottom: 1rem; font-weight: 700; }
     .competence-card li {
       margin-bottom: 0.6rem;
       font-size: 1rem;
@@ -153,7 +113,6 @@
       position: relative;
       padding-left: 1.2rem;
     }
-
     .competence-card li::before {
       content: "•";
       color: #1e40af;
@@ -170,7 +129,6 @@
       padding: 2rem 1rem;
       margin-top: 4rem;
     }
-
     .social-links {
       display: flex;
       justify-content: center;
@@ -178,24 +136,17 @@
       margin-bottom: 1rem;
       flex-wrap: wrap;
     }
-
     .social-links a {
       color: #f9fafb;
       font-weight: 600;
       border-bottom: 2px solid transparent;
       transition: 0.3s;
     }
-
-    .social-links a:hover {
-      border-bottom: 2px solid #f59e0b;
-    }
+    .social-links a:hover { border-bottom: 2px solid #f59e0b; }
 
     /* --- RESPONSIVE --- */
     @media (max-width: 768px) {
-      .nav-toggle {
-        display: block;
-      }
-
+      .nav-toggle { display: block; }
       .nav-menu {
         display: none;
         flex-direction: column;
@@ -207,14 +158,8 @@
         text-align: center;
         padding: 1rem 0;
       }
-
-      .nav-menu.show {
-        display: flex;
-      }
-
-      .competence-card {
-        text-align: center;
-      }
+      .nav-menu.show { display: flex; }
+      .competence-card { text-align: center; }
     }
   </style>
 </head>
@@ -240,7 +185,7 @@
   <!-- CONTENU PRINCIPAL -->
   <main class="container">
     <h1 class="section-title">Mes Compétences</h1>
-    <p class="section-subtitle">Cybersécurité • Gouvernance • Sensibilisation • Intelligence Artificielle • Soft Skills</p>
+    <p class="section-subtitle">Cybersécurité • Gouvernance • Sensibilisation • IA • Soft Skills</p>
 
     <div class="competence-grid">
       <div class="competence-card">
@@ -291,13 +236,29 @@
     <p>© 2025 Christian ESAKI MUNDEKE — Tous droits réservés</p>
   </footer>
 
+  <!-- --- JS BURGER MENU --- -->
   <script>
-    const toggle = document.getElementById('nav-toggle');
-    const menu = document.getElementById('main-menu');
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.getElementById("nav-toggle");
+      const menu = document.getElementById("main-menu");
 
-    toggle.addEventListener('click', () => {
-      menu.classList.toggle('show');
-      toggle.setAttribute('aria-expanded', menu.classList.contains('show'));
+      if (!toggle || !menu) return;
+
+      // Ouvre/ferme le menu
+      toggle.addEventListener("click", () => {
+        menu.classList.toggle("show");
+        toggle.setAttribute("aria-expanded", menu.classList.contains("show"));
+      });
+
+      // Ferme le menu quand on clique sur un lien (mobile)
+      menu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 768) {
+            menu.classList.remove("show");
+            toggle.setAttribute("aria-expanded", "false");
+          }
+        });
+      });
     });
   </script>
 </body>
