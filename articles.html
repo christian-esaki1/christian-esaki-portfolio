@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Articles & Publications | Christian ESAKI</title>
+  <link rel="stylesheet" href="styles.css"> <!-- utilise ton CSS principal -->
+  <style>
+    .articles-container {
+      max-width: 1100px;
+      margin: 80px auto 40px;
+      padding: 0 1.5rem;
+    }
+    .article-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+      margin-bottom: 2.5rem;
+      padding: 2rem 2rem 1rem 2rem;
+      position: relative;
+    }
+    .article-card h2 {
+      font-size: 1.5rem;
+      color: #0f172a;
+      margin-bottom: 0.7rem;
+    }
+    .article-card .meta {
+      font-size: 0.95rem;
+      color: #64748b;
+      margin-bottom: 1rem;
+    }
+    .article-card .video {
+      margin: 1rem 0;
+    }
+    .like-btn, .dl-btn {
+      background: #f59e0b;
+      color: white;
+      border: none;
+      border-radius: 18px;
+      padding: 0.45rem 1.2rem;
+      margin-right: 0.6rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    .like-btn:hover, .dl-btn:hover {
+      background: #d97706;
+    }
+    .comments-section {
+      margin-top: 1.5rem;
+      padding-top: 1.3rem;
+      border-top: 1px solid #e5e7eb;
+    }
+    .comment {
+      margin-bottom: 1.1rem;
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+    }
+    .comment-form textarea {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      resize: vertical;
+      min-height: 50px;
+      margin-bottom: 0.7rem;
+      padding: 0.5rem;
+      font-family: inherit;
+    }
+    .comment-form button {
+      background: #1e40af;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .comment-form button:hover {
+      background: #0f172a;
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">Christian ESAKI</a>
+      <!-- Place ici le bouton burger et le menu si besoin -->
+      <ul class="nav-menu">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="parcours.html">Parcours</a></li>
+        <li><a href="competences.html">Compétences</a></li>
+        <li><a href="projets.html">Projets</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="articles.html" class="active">Articles</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="articles-container">
+    <h1 class="section-title" style="text-align:center;">Articles & Publications</h1>
+    <p class="section-subtitle" style="text-align:center;">Retrouvez mes derniers articles, papiers scientifiques, retours techniques, et vidéos avec possibilités de commentaires.</p>
+    
+    <!-- Exemple d'article -->
+    <div class="article-card">
+      <h2>Cybersécurité des PME en Afrique centrale : enjeux et bonnes pratiques</h2>
+      <div class="meta">Publié le 28 octobre 2025 | Catégorie : Recherche | <a href="#">Télécharger PDF</a></div>
+      <p>Résumé : Analyse des risques principaux rencontrés par les PME de la région, solutions adaptées, outils gratuits recommandés et perspectives pour une meilleure gouvernance cyber.</p>
+      
+      <!-- Vidéo intégrée optionnelle -->
+      <div class="video">
+        <iframe width="400" height="225" src="https://www.youtube.com/embed/VIDEOCODE" frameborder="0" allowfullscreen></iframe>
+      </div>
+      
+      <button class="like-btn" onclick="likeArticle(this)">👍 J'aime <span class="count">0</span></button>
+      <a href="exemple-article.pdf" class="dl-btn" download>Télécharger l’article</a>
+      
+      <div class="comments-section">
+        <h3>Commentaires</h3>
+        <div class="comments-list">
+          <!-- Les commentaires JS s’ajouteront ici -->
+        </div>
+        <form class="comment-form" onsubmit="addComment(event, this)">
+          <textarea required placeholder="Laissez un commentaire..."></textarea>
+          <button type="submit">Publier</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Ajouter d'autres <div class="article-card"> pour d’autres articles -->
+  </main>
+
+  <footer>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/christian-esaki1/" target="_blank">GitHub</a>
+      <a href="mailto:christian.esaki@gmail.com">Email</a>
+    </div>
+    <p>© 2025 Christian ESAKI MUNDEKE — Tous droits réservés</p>
+  </footer>
+
+  <script>
+    function likeArticle(btn) {
+      let countSpan = btn.querySelector('.count');
+      let count = parseInt(countSpan.textContent, 10) || 0;
+      countSpan.textContent = count + 1;
+    }
+    function addComment(event, form) {
+      event.preventDefault();
+      const textarea = form.querySelector('textarea');
+      const comment = document.createElement('div');
+      comment.className = 'comment';
+      comment.textContent = textarea.value;
+      form.parentElement.querySelector('.comments-list').appendChild(comment);
+      textarea.value = '';
+    }
+  </script>
+</body>
+</html>
