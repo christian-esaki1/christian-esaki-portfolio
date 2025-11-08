@@ -4,206 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Publications | Christian ESAKI</title>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
-    body {
-      font-family: 'Poppins', Arial, sans-serif;
-      background: #f9fafb;
-      color: #0f172a;
-      overflow-x: hidden;
-    }
-    nav {
-      background-color: #0f172a;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.09);
-    }
-    .logo {
-      font-weight: 800;
-      font-size: 1.4rem;
-      color: #f59e0b;
-    }
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 1.2rem;
-      transition: all 0.4s;
-    }
-    .nav-links a {
-      color: white;
-      font-weight: 600;
-      position: relative;
-      transition: 0.3s;
-      padding: 0.2rem 0.4rem;
-    }
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: #f59e0b;
-      border-radius: 2px;
-    }
-    .burger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 6px;
-      z-index: 1100;
-    }
-    .burger div {
-      width: 25px; height: 3px; background: white; transition:.3s;
-    }
-    .burger.active div:nth-child(1){transform:rotate(45deg)translateY(8px);}
-    .burger.active div:nth-child(2){opacity:0;}
-    .burger.active div:nth-child(3){transform:rotate(-45deg)translateY(-8px);}
-    .container {
-      max-width:1100px;
-      margin:80px auto;
-      padding:0 1.2rem;
-    }
-    .section-title{text-align:center;font-size:2.1rem;font-weight:800;color:#0f172a;margin-bottom:0.2rem;}
-    .section-subtitle{text-align:center;color:#475569;font-size:1.1rem;margin-bottom:2.5rem;}
-    .pub-grid {
-      display:grid;
-      grid-template-columns: repeat(auto-fit,minmax(340px,1fr));
-      gap:2.3rem;
-    }
-    .pub-card {
-      background:#fff;
-      border-radius:16px;
-      box-shadow:0 7px 28px rgba(30,64,175,0.09);
-      padding:2.2rem 2rem 1rem;
-      position:relative;
-      transition:box-shadow .22s,transform .22s;
-      display:flex;
-      flex-direction:column;
-      gap:1rem;
-    }
-    .pub-card:hover{box-shadow:0 12px 40px rgba(30,64,175,0.18);transform: translateY(-7px) scale(1.01);}
-    .pub-title{font-size:1.25rem;color:#1e40af;font-weight:800;}
-    .pub-meta{font-size:0.93rem;color:#64748b;font-style:italic;margin-bottom:0.2rem;}
-    .pub-description{margin-bottom:0.4rem;color:#334155;}
-    .pub-media{margin-bottom:0.4rem;}
-    .pub-media embed,.pub-media img,.pub-media video,.pub-media iframe{max-width:99%;border-radius:7px;}
-    .dl-btn,.like-btn{
-      background:#10b981;
-      color:#fff;
-      border:none;
-      font-weight:600;
-      border-radius:14px;
-      padding:0.45rem 1.13rem;
-      margin-right:0.7rem;
-      margin-bottom:0.3rem;
-      text-decoration:none;
-      cursor:pointer;
-      transition:background 0.19s;
-      font-size:1rem;
-      display:inline-block;
-    }
-    .like-btn { background:#f59e0b;}
-    .dl-btn:hover{background:#059669;}
-    .like-btn:hover{background:#d97706;}
-    .comments-section {
-      margin-top:1.3rem;
-      border-top:1px solid #e5e7eb;
-      padding-top:0.7rem;
-    }
-    .comment{margin-bottom:0.7rem;background:#f8fafc;border-radius:8px;padding:0.6rem 1rem;}
-    .comment-form textarea {
-      width:100%;
-      border-radius:7px;
-      border:1px solid #d1d5db;
-      resize:vertical;
-      min-height:48px;
-      margin-bottom:0.6rem;
-      padding:0.5rem;
-      font-family:inherit;
-      font-size:1rem;
-    }
-    .comment-form button {
-      background:#1e40af;
-      color:#fff;
-      border:none;
-      padding:0.4rem 1.2rem;
-      border-radius:8px;
-      font-weight:600;
-      cursor:pointer;
-      transition:background .18s;
-    }
-    .comment-form button:hover { background:#0f172a;}
-    footer {
-      background:#0f172a;
-      color:#fff;
-      text-align:center;
-      padding:2rem 1rem;
-      margin-top:3.3rem;
-    }
-    .social-links {
-      display:flex;justify-content:center;gap:1.3rem;margin-bottom:1rem;flex-wrap:wrap;
-    }
-    .social-link {
-      color:#f9fafb;
-      font-weight:600;
-      border-bottom:2px solid transparent;
-      transition:.3s;
-    }
-    .social-link:hover {border-bottom:2px solid #f59e0b;}
-    @media(max-width:768px){
-      .burger{display:flex;}
-      .nav-links{
-        display:none;
-        flex-direction:column;
-        background:rgba(15,23,42,0.98);
-        position:absolute;
-        top:70px; right:0; width:96vw; text-align:center; padding:1rem 0; backdrop-filter:blur(7px);
-      }
-      .nav-links.show{
-        display:flex;
-        animation:slideIn .4s ease-in-out;
-      }
-      @keyframes slideIn {from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
-      .nav-links a{padding:1rem;width:100%;}
-      .container{margin:65px auto;}
-    }
-    @media(max-width:480px){
-      .pub-card{padding:1rem 0.3rem;}
-      .pub-title{font-size:1rem;}
-      .section-title{font-size:1.3rem;}
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- NAVBAR -->
-  <nav>
-    <a href="index.html" class="logo">Christian ESAKI</a>
-    <ul class="nav-links">
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="parcours.html">Parcours</a></li>
-      <li><a href="competences.html">Compétences</a></li>
-      <li><a href="projets.html">Projets</a></li>
-      <li><a href="certifications.html">Certifications</a></li>
-      <li><a href="articles.html" class="active">Articles</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <div class="burger" id="burger">
-      <div></div><div></div><div></div>
-    </div>
-  </nav>
+
+  <!-- ✅ Navbar importée dynamiquement -->
+  <div id="navbar-container"></div>
+
   <main class="container">
     <h1 class="section-title">Publications & Médias</h1>
     <p class="section-subtitle">Publie tes articles, vidéos, documents et créés de l’engagement !</p>
+
     <div class="pub-grid">
-      <!-- Publication PDF -->
       <div class="pub-card">
         <div class="pub-title">Cybersécurité PME : Guide Africain</div>
         <div class="pub-meta">Publié le 1 nov. 2025 | PDF</div>
@@ -211,45 +23,34 @@
         <div class="pub-media"><embed src="exemple-article.pdf" type="application/pdf" width="100%" height="220px"/></div>
         <a href="exemple-article.pdf" class="dl-btn" download>Télécharger</a>
         <button class="like-btn" onclick="likeArticle(this)">👍 J'aime <span class="count">0</span></button>
-        <div class="comments-section"><div class="comments-list"></div>
+
+        <div class="comments-section">
+          <div class="comments-list"></div>
           <form class="comment-form" onsubmit="addComment(event, this)">
             <textarea required placeholder="Laissez un commentaire…"></textarea>
             <button type="submit">Commenter</button>
           </form>
         </div>
       </div>
-      <!-- Publication Vidéo -->
+
       <div class="pub-card">
         <div class="pub-title">Webinaire Gouvernance Cyber</div>
         <div class="pub-meta">Publié le 26 oct. 2025 | Vidéo</div>
         <div class="pub-description">Replay de la conférence sur les enjeux cyber.</div>
         <div class="pub-media"><iframe width="98%" height="225" src="https://www.youtube.com/embed/VIDEOCODE" allowfullscreen></iframe></div>
         <button class="like-btn" onclick="likeArticle(this)">👍 J'aime <span class="count">0</span></button>
-        <div class="comments-section"><div class="comments-list"></div>
+
+        <div class="comments-section">
+          <div class="comments-list"></div>
           <form class="comment-form" onsubmit="addComment(event, this)">
             <textarea required placeholder="Votre avis…"></textarea>
             <button type="submit">Commenter</button>
           </form>
         </div>
       </div>
-      <!-- Publication Image / Slide -->
-      <div class="pub-card">
-        <div class="pub-title">Slides : Gestion des risques numériques</div>
-        <div class="pub-meta">Publié le 15 oct. 2025 | Slides</div>
-        <div class="pub-description">Présentation conférence RDC.</div>
-        <div class="pub-media"><img src="exemple-slide.jpg" alt="Slide gestion des risques"></div>
-        <a href="exemple-slide.pdf" class="dl-btn" download>Télécharger</a>
-        <button class="like-btn" onclick="likeArticle(this)">👍 J'aime <span class="count">0</span></button>
-        <div class="comments-section"><div class="comments-list"></div>
-          <form class="comment-form" onsubmit="addComment(event, this)">
-            <textarea required placeholder="Votre commentaire…"></textarea>
-            <button type="submit">Commenter</button>
-          </form>
-        </div>
-      </div>
-      <!-- Ajouter d'autres .pub-card ici -->
     </div>
   </main>
+
   <footer>
     <div class="social-links">
       <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" target="_blank" class="social-link">LinkedIn</a>
@@ -258,26 +59,22 @@
     </div>
     <p>© 2025 Christian ESAKI MUNDEKE — Tous droits réservés</p>
   </footer>
+
   <script>
-    // --- Menu burger ---
-    const burger = document.getElementById('burger');
-    const navLinks = document.querySelector('.nav-links');
-    burger.addEventListener('click', ()=> {
-      navLinks.classList.toggle('show');
-      burger.classList.toggle('active');
-    });
-    document.querySelectorAll('.nav-links a').forEach(link=> {
-      link.addEventListener('click', ()=> {
-        navLinks.classList.remove('show');
-        burger.classList.remove('active');
+    // --- Charger la navbar ---
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-container").innerHTML = html;
       });
-    });
-    // Like & commentaire JS
+
+    // --- Like & commentaire JS ---
     function likeArticle(btn) {
-      let countSpan = btn.querySelector('.count');
+      const countSpan = btn.querySelector('.count');
       let count = parseInt(countSpan.textContent, 10) || 0;
       countSpan.textContent = count + 1;
     }
+
     function addComment(event, form) {
       event.preventDefault();
       const textarea = form.querySelector('textarea');
@@ -288,5 +85,6 @@
       textarea.value = '';
     }
   </script>
+
 </body>
 </html>
