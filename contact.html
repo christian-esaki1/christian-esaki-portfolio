@@ -1,269 +1,551 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Contact | Christian ESAKI</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contactez Christian ESAKI pour vos besoins en cybersécurité - Expert en sécurité des systèmes d'information">
+  <title>Contact - Christian ESAKI | Expert Cybersécurité</title>
   <link rel="stylesheet" href="css/style.css">
-
+  <link rel="stylesheet" href="css/navbar.css">
+  
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: "Inter", Arial, sans-serif;
-      background-color: #f9fafc;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: #1f2937;
       line-height: 1.6;
+      min-height: 100vh;
     }
 
-    /* Navbar */
-    .navbar {
-      background-color: #0f172a;
-      padding: 1rem 0;
-    }
-
-    .navbar .logo {
-      color: #fff;
-      font-weight: 700;
-      font-size: 1.4rem;
-    }
-
-    .nav-menu li a {
-      color: #cbd5e1;
-      transition: color 0.3s ease;
-    }
-
-    .nav-menu li a:hover,
-    .nav-menu li a.active {
-      color: #3b82f6;
-    }
-
-    /* Header Section */
-    .section {
-      padding: 4rem 1.5rem;
-      text-align: center;
-    }
-
-    .section-title {
-      font-size: 2.2rem;
-      color: #0f172a;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .section-subtitle {
-      color: #475569;
-      font-size: 1.05rem;
-      margin-bottom: 2rem;
-    }
-
-    /* Contact Grid */
-    .contact-wrapper {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2.5rem;
-      max-width: 1100px;
+    /* Section principale */
+    .contact-section {
+      padding: 6rem 1.5rem 4rem;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    .contact-info, .contact-form {
-      background: #fff;
-      padding: 2rem 2.5rem;
-      border-radius: 1rem;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease;
-    }
-
-    .contact-info:hover,
-    .contact-form:hover {
-      transform: translateY(-5px);
-    }
-
-    .contact-info h3 {
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-      color: #0f172a;
-    }
-
-    .contact-info p {
-      margin: 0.4rem 0;
-    }
-
-    .contact-info a {
-      color: #2563eb;
-      text-decoration: none;
-    }
-
-    .contact-info a:hover {
-      text-decoration: underline;
-    }
-
-    /* Formulaire */
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    label {
-      text-align: left;
-      font-weight: 600;
-      color: #1e293b;
-    }
-
-    input, textarea, select {
-      padding: 0.8rem 1rem;
-      border: 1px solid #d1d5db;
-      border-radius: 0.5rem;
-      font-size: 1rem;
-      background: #f8fafc;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    input:focus, textarea:focus, select:focus {
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
-      outline: none;
-    }
-
-    .btn {
-      background-color: #2563eb;
-      color: #fff;
-      border: none;
-      padding: 0.9rem 1.2rem;
-      border-radius: 0.5rem;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    .btn:hover {
-      background-color: #1d4ed8;
-      transform: scale(1.03);
-    }
-
-    /* Newsletter */
-    .newsletter {
-      margin-top: 4rem;
-      background: #0f172a;
-      color: #f9fafb;
-      padding: 2.5rem 1.5rem;
+    .section-header {
       text-align: center;
-      border-radius: 1rem;
+      margin-bottom: 4rem;
+      animation: fadeInDown 0.8s ease;
     }
 
-    .newsletter h3 {
-      font-size: 1.4rem;
+    .section-title {
+      font-size: 2.8rem;
+      color: #ffffff;
+      font-weight: 800;
       margin-bottom: 1rem;
-      font-weight: 600;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     }
 
-    .newsletter input[type="email"] {
-      padding: 0.8rem 1rem;
-      border-radius: 0.5rem;
-      border: none;
-      margin-right: 0.5rem;
-      width: 250px;
-      max-width: 80%;
+    .section-subtitle {
+      color: #f1f5f9;
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
     }
 
-    .newsletter button {
-      background-color: #3b82f6;
-      color: #fff;
-      border: none;
-      padding: 0.8rem 1.2rem;
-      border-radius: 0.5rem;
-      cursor: pointer;
+    /* Grid de contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+    }
+
+    @media (max-width: 968px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Carte d'information */
+    .contact-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 2.5rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      animation: fadeInLeft 0.8s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 70px rgba(0,0,0,0.2);
+    }
+
+    .contact-card h2 {
+      font-size: 1.8rem;
+      color: #0f172a;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      margin: 1.2rem 0;
+      padding: 1rem;
+      background: #f8fafc;
+      border-radius: 0.75rem;
       transition: background 0.3s ease;
     }
 
-    .newsletter button:hover {
-      background-color: #2563eb;
+    .contact-info-item:hover {
+      background: #e0e7ff;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-icon::before {
+      content: "📧";
+      font-size: 1.2rem;
+    }
+
+    .contact-icon.linkedin::before { content: "💼"; }
+    .contact-icon.github::before { content: "👨‍💻"; }
+    .contact-icon.location::before { content: "📍"; }
+    .contact-icon.status::before { content: "✅"; }
+
+    .contact-info-item a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .contact-info-item a:hover {
+      color: #1d4ed8;
+      text-decoration: underline;
+    }
+
+    .availability-badge {
+      display: inline-block;
+      background: #10b981;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+
+    /* Formulaire */
+    .form-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 2.5rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      animation: fadeInRight 0.8s ease;
+    }
+
+    .form-card h2 {
+      font-size: 1.8rem;
+      color: #0f172a;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    input, textarea {
+      padding: 0.9rem 1.2rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      background: #ffffff;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+      outline: none;
+      transform: translateY(-2px);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      border: none;
+      padding: 1.1rem 2.5rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-submit:active {
+      transform: translateY(-1px);
+    }
+
+    /* Newsletter */
+    .newsletter-section {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 3rem 2.5rem;
+      border-radius: 1.5rem;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      animation: fadeInUp 0.8s ease;
+      margin-bottom: 4rem;
+    }
+
+    .newsletter-section h3 {
+      font-size: 1.8rem;
+      color: #0f172a;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .newsletter-section p {
+      color: #64748b;
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      min-width: 250px;
+      padding: 1rem 1.5rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+    }
+
+    .btn-newsletter {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .btn-newsletter:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
     }
 
     /* Footer */
     footer {
-      background-color: #0f172a;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
       color: #cbd5e1;
       text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 4rem;
+      padding: 2.5rem 1.5rem;
+      border-radius: 1.5rem 1.5rem 0 0;
     }
 
     footer a {
-      color: #3b82f6;
+      color: #818cf8;
       text-decoration: none;
-      margin: 0 0.5rem;
+      margin: 0 0.8rem;
+      transition: color 0.3s ease;
     }
 
     footer a:hover {
+      color: #a5b4fc;
       text-decoration: underline;
+    }
+
+    .footer-links {
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Message de confirmation */
+    .success-message {
+      display: none;
+      background: #10b981;
+      color: white;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .success-message.show {
+      display: block;
+      animation: fadeInUp 0.5s ease;
     }
   </style>
 </head>
 
 <body>
-  <!-- Navigation -->
- <div id="navbar-container"></div>
-  <main>
-    <section class="section">
-      <h1 class="section-title">Me Contacter</h1>
-      <p class="section-subtitle">Pour toute question ou collaboration, remplissez le formulaire ci-dessous. Je vous répondrai rapidement.</p>
+  <div id="navbar-placeholder"></div>
 
-      <div class="contact-wrapper">
-        <div class="contact-info">
-          <h3>Coordonnées Professionnelles</h3>
-          <p> <a href="mailto:christian.esaki@gmail.com">christian.esaki@gmail.com</a></p>
-          <p><a href="https://www.linkedin.com/in/christian-esaki-mundeke/" target="_blank">LinkedIn : christian-esaki-mundeke</a></p>
-          <p> <a href="https://github.com/christian-esaki1/" target="_blank">GitHub : christian-esaki1</a></p>
-          <p>Basé à Paris, France</p>
-          <p>Disponible pour CDI ou missions en cybersécurité</p>
+  <main class="contact-section">
+    <header class="section-header">
+      <h1 class="section-title">Prenons Contact</h1>
+      <p class="section-subtitle">
+        Vous avez un projet de cybersécurité ? Une question ? 
+        Je suis disponible pour échanger sur vos besoins en sécurité informatique.
+      </p>
+    </header>
+
+    <div class="contact-grid">
+      <!-- Informations de contact -->
+      <div class="contact-card">
+        <h2>Informations</h2>
+        
+        <div class="contact-info-item">
+          <div class="contact-icon"></div>
+          <div>
+            <strong>Email</strong><br>
+            <a href="mailto:christian.esaki@gmail.com">christian.esaki@gmail.com</a>
+          </div>
         </div>
 
-        <form class="contact-form" method="POST" action="https://formspree.io/f/mrbgzvvg">
-          <label for="firstname">Prénom*</label>
-          <input type="text" id="firstname" name="firstname" required>
+        <div class="contact-info-item">
+          <div class="contact-icon linkedin"></div>
+          <div>
+            <strong>LinkedIn</strong><br>
+            <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" target="_blank" rel="noopener">
+              christian-esaki-mundeke
+            </a>
+          </div>
+        </div>
 
-          <label for="lastname">Nom*</label>
-          <input type="text" id="lastname" name="lastname" required>
+        <div class="contact-info-item">
+          <div class="contact-icon github"></div>
+          <div>
+            <strong>GitHub</strong><br>
+            <a href="https://github.com/christian-esaki1/" target="_blank" rel="noopener">
+              christian-esaki1
+            </a>
+          </div>
+        </div>
 
-          <label for="email">Email*</label>
-          <input type="email" id="email" name="email" required>
+        <div class="contact-info-item">
+          <div class="contact-icon location"></div>
+          <div>
+            <strong>Localisation</strong><br>
+            Paris, France
+          </div>
+        </div>
 
-          <label for="subject">Sujet*</label>
-          <input type="text" id="subject" name="subject" placeholder="Ex: Collaboration, question, offre..." required>
+        <div class="contact-info-item">
+          <div class="contact-icon status"></div>
+          <div>
+            <strong>Disponibilité</strong><br>
+            CDI ou missions en cybersécurité
+          </div>
+        </div>
 
-          <label for="message">Message*</label>
-          <textarea id="message" name="message" rows="6" placeholder="Votre message ici..." required></textarea>
-
-          <button type="submit" class="btn">Envoyer</button>
-        </form>
+        <div class="availability-badge">
+          🟢 Disponible immédiatement
+        </div>
       </div>
 
-      <div class="newsletter">
-        <h3>Ne manquez pas mes dernières actualités cybersécurité</h3>
-        <form>
-          <input type="email" placeholder="Votre adresse email" required>
-          <button type="submit">S'abonner</button>
+      <!-- Formulaire de contact -->
+      <div class="form-card">
+        <h2>Envoyez-moi un message</h2>
+        
+        <form class="contact-form" id="contactForm" method="POST" action="https://formspree.io/f/mrbgzvvg">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstname">Prénom *</label>
+              <input type="text" id="firstname" name="firstname" required placeholder="Votre prénom">
+            </div>
+
+            <div class="form-group">
+              <label for="lastname">Nom *</label>
+              <input type="text" id="lastname" name="lastname" required placeholder="Votre nom">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required placeholder="votre.email@exemple.com">
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Sujet *</label>
+            <input type="text" id="subject" name="subject" required placeholder="Ex: Collaboration, question, offre d'emploi...">
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" required placeholder="Décrivez votre demande ou projet..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Envoyer le message</button>
+          
+          <div class="success-message" id="successMessage">
+            ✓ Message envoyé avec succès ! Je vous répondrai rapidement.
+          </div>
         </form>
-        <p style="font-size:0.9rem;margin-top:0.5rem;">En vous inscrivant, vous acceptez de recevoir mes publications et conseils sur la cybersécurité. Vous pouvez vous désinscrire à tout moment.</p>
       </div>
+    </div>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+      <h3>📬 Newsletter Cybersécurité</h3>
+      <p>Recevez mes derniers articles, analyses et conseils en sécurité informatique</p>
+      
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="votre.email@exemple.com" required>
+        <button type="submit" class="btn-newsletter">S'abonner</button>
+      </form>
+      
+      <p style="font-size: 0.85rem; color: #64748b; margin-top: 1rem;">
+        Pas de spam. Vous pouvez vous désinscrire à tout moment.
+      </p>
     </section>
   </main>
 
   <footer>
-    <p>
-      <a href="#">Mentions légales</a> | 
-      <a href="#">Politique de confidentialité</a> | 
+    <div class="footer-links">
+      <a href="mentions-legales.html">Mentions légales</a> |
+      <a href="confidentialite.html">Confidentialité</a> |
       <a href="mailto:christian.esaki@gmail.com">Contact direct</a>
-    </p>
-    <p style="margin-top:1rem;">© 2025 Christian ESAKI MUNDEKE — Tous droits réservés</p>
+    </div>
+    <p>© 2025 Christian ESAKI MUNDEKE — Expert en Cybersécurité</p>
   </footer>
-    <script>
-  fetch("navbar.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("navbar-container").innerHTML = html;
+
+  <script src="js/navbar.js"></script>
+  <script>
+    // Gestion du formulaire de contact
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      // Laisser Formspree gérer la soumission
+      setTimeout(() => {
+        document.getElementById('successMessage').classList.add('show');
+        setTimeout(() => {
+          document.getElementById('successMessage').classList.remove('show');
+        }, 5000);
+      }, 100);
     });
-</script>
+
+    // Gestion de la newsletter
+    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Merci pour votre inscription ! Vous recevrez bientôt nos actualités cybersécurité.');
+      this.reset();
+    });
+  </script>
 </body>
 </html>
