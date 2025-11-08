@@ -132,6 +132,12 @@
     </div>
     <p>© 2025 Christian ESAKI MUNDEKE — Tous droits réservés</p>
   </footer>
-  
+    <script>
+  fetch("navbar.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("navbar-container").innerHTML = html;
+    });
+</script>
 </body>
 </html>
