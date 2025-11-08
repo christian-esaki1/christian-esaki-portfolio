@@ -1,356 +1,67 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Accueil | Christian ESAKI</title>
+
+  <!-- Sécurité DevSecOps -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 img-src 'self' data: https:;
+                 style-src 'self' 'unsafe-inline';
+                 script-src 'self' js/navbar.js;
+                 object-src 'none';
+                 frame-ancestors 'none';
+                 base-uri 'self';">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
-  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
-  <title>Christian ESAKI MUNDEKE | Expert en Cybersécurité & IA</title>
+  <meta name="referrer" content="no-referrer">
 
-  <style>
-    /* --- RESET & GLOBAL --- */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Poppins', Arial, sans-serif;
-      color: #0f172a;
-      background-color: #f9fafb;
-      overflow-x: hidden;
-    }
-
-    a { text-decoration: none; }
-
-    /* --- NAVBAR --- */
-    nav {
-      background-color: #0f172a;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    }
-
-    .logo {
-      font-weight: 800;
-      font-size: 1.5rem;
-      color: #f59e0b;
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 1.5rem;
-      transition: all 0.4s ease-in-out;
-    }
-
-    .nav-links a {
-      color: white;
-      font-weight: 600;
-      position: relative;
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: #f59e0b;
-      border-radius: 2px;
-    }
-
-    /* --- BURGER MENU --- */
-    .burger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-      z-index: 1100;
-    }
-
-    .burger div {
-      width: 25px;
-      height: 3px;
-      background: white;
-      transition: 0.3s;
-    }
-
-    .burger.active div:nth-child(1) {
-      transform: rotate(45deg) translateY(8px);
-    }
-    .burger.active div:nth-child(2) {
-      opacity: 0;
-    }
-    .burger.active div:nth-child(3) {
-      transform: rotate(-45deg) translateY(-8px);
-    }
-
-    /* --- HERO --- */
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 120px 1.5rem 80px;
-      background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%);
-      color: white;
-    }
-
-    .hero img {
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      border: 6px solid #f59e0b;
-      box-shadow: 0 0 40px rgba(245,158,11,0.6);
-      margin-bottom: 1.5rem;
-      object-fit: cover;
-    }
-
-    .hero h1 {
-      font-size: 2.8rem;
-      font-weight: 800;
-    }
-
-    .hero .subtitle {
-      font-size: 1.3rem;
-      color: #fbbf24;
-      margin-top: 0.4rem;
-      font-weight: 600;
-    }
-
-    .hero p {
-      max-width: 700px;
-      line-height: 1.6;
-      font-size: 1.1rem;
-      color: #f1f5f9;
-      margin-top: 1.5rem;
-    }
-
-    .cta-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .btn {
-      padding: 0.9rem 2rem;
-      border-radius: 8px;
-      font-weight: 700;
-      transition: 0.3s ease;
-    }
-
-    .btn-primary {
-      background: #f59e0b;
-      color: #0f172a;
-    }
-
-    .btn-primary:hover {
-      background: #fbbf24;
-    }
-
-    .btn-outline {
-      border: 2px solid #f59e0b;
-      color: #f59e0b;
-    }
-
-    .btn-outline:hover {
-      background: #f59e0b;
-      color: #0f172a;
-    }
-
-    /* --- ABOUT --- */
-    .about {
-      max-width: 1000px;
-      margin: 80px auto;
-      padding: 0 1.5rem;
-      text-align: center;
-    }
-
-    .about h2 {
-      font-size: 2rem;
-      color: #0f172a;
-      font-weight: 800;
-      margin-bottom: 1rem;
-    }
-
-    .about p {
-      font-size: 1.05rem;
-      color: #475569;
-      line-height: 1.7;
-      margin-bottom: 2rem;
-    }
-
-    .key-points {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.2rem;
-    }
-
-    .point {
-      background: #1e40af;
-      color: white;
-      padding: 1rem 1.5rem;
-      border-radius: 10px;
-      font-weight: 600;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s;
-    }
-
-    .point:hover {
-      transform: translateY(-5px);
-    }
-
-    /* --- FOOTER --- */
-    footer {
-      background: #0f172a;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 3rem;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .social-link {
-      color: #f9fafb;
-      font-weight: 600;
-      border-bottom: 2px solid transparent;
-      transition: 0.3s;
-    }
-
-    .social-link:hover {
-      border-bottom: 2px solid #f59e0b;
-    }
-
-    /* --- RESPONSIVE --- */
-    @media (max-width: 768px) {
-      .burger { display: flex; }
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        background: rgba(15, 23, 42, 0.97);
-        position: absolute;
-        top: 70px;
-        right: 0;
-        width: 100%;
-        text-align: center;
-        padding: 1rem 0;
-        backdrop-filter: blur(8px);
-      }
-      .nav-links.show { 
-        display: flex;
-        animation: slideIn 0.4s ease-in-out;
-      }
-      @keyframes slideIn {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      .nav-links a {
-        padding: 1rem;
-        width: 100%;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <!-- NAVBAR -->
-  <nav>
-    <a href="index.html" class="logo">Christian ESAKI</a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Accueil</a></li>
-      <li><a href="parcours.html">Parcours</a></li>
-      <li><a href="competences.html">Compétences</a></li>
-      <li><a href="projets.html">Projets</a></li>
-      <li><a href="certifications.html">Certifications</a></li>
-      <li><a href="articles.html">Articles</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <div class="burger" id="burger">
-      <div></div><div></div><div></div>
-    </div>
-  </nav>
+  <div id="navbar-placeholder"></div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <img src="images/esaki.jpg" alt="Christian ESAKI">
-    <h1>Christian ESAKI MUNDEKE</h1>
-    <p class="subtitle">Expert en Cybersécurité & Intelligence Artificielle</p>
-    <p>Étudiant à <strong>Efrei Paris</strong>, passionné par la cybersécurité offensive, la gouvernance et la défense numérique. Mon objectif : renforcer la résilience des infrastructures critiques et innover dans la détection automatisée des menaces à l’aide de l’intelligence artificielle.</p>
-    <div class="cta-buttons">
-      <a href="documents/CV_Christian_Esaki.pdf" class="btn btn-primary" target="_blank">Télécharger mon CV</a>
-      <a href="contact.html" class="btn btn-outline">Me Contacter</a>
+  <header class="hero">
+    <div class="hero-content">
+      <img src="esaki.jpg" alt="Christian Esaki" class="profile-photo">
+      <h1>Christian ESAKI MUNDEKE</h1>
+      <h2>Apprenti en Cybersécurité & Gouvernance | Efrei Paris</h2>
+      <p class="intro">
+        Passionné par la cybersécurité, la gouvernance IT et la sensibilisation cyber, 
+        j'œuvre pour renforcer la souveraineté numérique et la sécurité des systèmes d’information 
+        en Afrique et en Europe. Mon parcours allie expertise technique, rigueur méthodologique 
+        et engagement citoyen.
+      </p>
+      <a href="parcours.html" class="cta-button">Découvrir mon parcours</a>
     </div>
-  </section>
+  </header>
 
-  <!-- ABOUT -->
   <section class="about">
-    <h2>Compétences Clés</h2>
-    <p>Grâce à ma formation en cybersécurité et en IA, j’interviens sur la sécurisation des systèmes d’information, l’audit technique, l’analyse des risques et la mise en conformité des infrastructures cloud et réseau.</p>
-    <div class="key-points">
-      <div class="point">Pentesting & Sécurité Réseau</div>
-      <div class="point">IA appliquée à la Cyberdéfense</div>
-      <div class="point">Analyse de Risques (EBIOS RM, ISO 27005)</div>
-      <div class="point">Conformité RGPD & ISO 27001</div>
-      <div class="point">Automatisation & Python Sécurité</div>
-      <div class="point">Sensibilisation & Gouvernance SI</div>
-    </div>
+    <h2>À propos de moi</h2>
+    <p>
+      J'ai effectué un stage en cybersécurité à <strong>PariSanté Campus</strong>, 
+      où j'ai mené une analyse de risques du SI, identifie les faiblesses cyber, 
+      et propose des mesures correctives basées sur les normes <strong>ISO 27001</strong> et <strong>EBIOS RM</strong>.
+    </p>
+    <p>
+      Mon objectif est de contribuer à un écosystème numérique plus sûr, 
+      tout en sensibilisant les institutions publiques et privées aux cybermenaces 
+      (phishing, ransomware, fuites de données, etc.).
+    </p>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="social-links">
-      <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" target="_blank" class="social-link">LinkedIn</a>
-      <a href="https://github.com/christian-esaki1/" target="_blank" class="social-link">GitHub</a>
-      <a href="mailto:christian.esaki@gmail.com" class="social-link">Email</a>
+      <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/christian-esaki1/" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="mailto:christian.esaki@gmail.com">Email</a>
     </div>
     <p>© 2025 Christian ESAKI MUNDEKE — Tous droits réservés</p>
   </footer>
 
-  <script>
-    // --- Menu burger ---
-    const burger = document.getElementById('burger');
-    const navLinks = document.querySelector('.nav-links');
-
-    burger.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-      burger.classList.toggle('active');
-      document.body.classList.toggle('no-scroll');
-    });
-
-    // Fermer le menu après un clic sur un lien
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('show');
-        burger.classList.remove('active');
-        document.body.classList.remove('no-scroll');
-      });
-    });
-
-    // --- Sécurité JS basique ---
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('a[target="_blank"]').forEach(a => {
-        a.setAttribute('rel', 'noopener noreferrer');
-      });
-    });
-  </script>
+  <script src="js/navbar.js"></script>
 </body>
 </html>
