@@ -2,89 +2,709 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Publications | Christian ESAKI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Publications et articles de Christian ESAKI sur la cybersécurité">
+  <title>Publications - Christian ESAKI | Expert Cybersécurité</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #1f2937;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Section principale */
+    .publications-section {
+      padding: 6rem 1.5rem 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      color: #ffffff;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .section-subtitle {
+      color: #f1f5f9;
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* Filtres */
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      animation: fadeIn 1s ease;
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.9);
+      color: #0f172a;
+      border: 2px solid transparent;
+      padding: 0.75rem 1.5rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: white;
+      border-color: #667eea;
+      color: #667eea;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Grille des publications */
+    .pub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2.5rem;
+      animation: fadeInUp 1s ease;
+    }
+
+    @media (max-width: 768px) {
+      .pub-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Carte de publication */
+    .pub-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pub-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 70px rgba(0,0,0,0.2);
+    }
+
+    .pub-header {
+      padding: 1.5rem 1.5rem 1rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .pub-type {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .pub-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .pub-meta {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .pub-meta::before {
+      content: "📅";
+    }
+
+    .pub-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pub-description {
+      color: #475569;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .pub-media {
+      margin-bottom: 1.5rem;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      background: #f1f5f9;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pub-media iframe {
+      width: 100%;
+      height: 250px;
+      border: none;
+    }
+
+    .pub-media embed {
+      width: 100%;
+      height: 250px;
+      border: none;
+    }
+
+    .pub-media-placeholder {
+      width: 100%;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      background: linear-gradient(135deg, #e0e7ff 0%, #ddd6fe 100%);
+    }
+
+    /* Actions */
+    .pub-actions {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .dl-btn {
+      flex: 1;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .dl-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .like-btn {
+      background: white;
+      border: 2px solid #e2e8f0;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .like-btn:hover {
+      border-color: #667eea;
+      color: #667eea;
+      transform: scale(1.05);
+    }
+
+    .like-btn.liked {
+      background: #667eea;
+      color: white;
+      border-color: #667eea;
+    }
+
+    .count {
+      background: #f1f5f9;
+      padding: 0.2rem 0.6rem;
+      border-radius: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .like-btn.liked .count {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Commentaires */
+    .comments-section {
+      border-top: 2px solid #e2e8f0;
+      padding-top: 1.5rem;
+    }
+
+    .comments-header {
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .comments-list {
+      margin-bottom: 1rem;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .comment {
+      background: #f8fafc;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      margin-bottom: 0.75rem;
+      border-left: 3px solid #667eea;
+      animation: slideIn 0.3s ease;
+    }
+
+    .comment-author {
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+    }
+
+    .comment-text {
+      color: #475569;
+      font-size: 0.95rem;
+    }
+
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .comment-form textarea {
+      padding: 0.75rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 0.75rem;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 80px;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .comment-form textarea:focus {
+      border-color: #667eea;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .comment-form button {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      align-self: flex-start;
+    }
+
+    .comment-form button:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      color: #cbd5e1;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      color: #818cf8;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+    }
+
+    .social-link:hover {
+      color: #a5b4fc;
+      transform: translateY(-2px);
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .section-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .publications-section {
+        padding: 5rem 1rem 3rem;
+      }
+
+      .pub-actions {
+        flex-direction: column;
+      }
+
+      .like-btn {
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <div id="navbar-placeholder"></div>
 
-  <!-- ✅ Navbar importée dynamiquement -->
-  <div id="navbar-container"></div>
+  <main class="publications-section">
+    <header class="section-header">
+      <h1 class="section-title">📚 Publications & Médias</h1>
+      <p class="section-subtitle">
+        Découvrez mes articles, vidéos et documents sur la cybersécurité, 
+        la gouvernance IT et la protection des données
+      </p>
+    </header>
 
-  <main class="container">
-    <h1 class="section-title">Publications & Médias</h1>
-    <p class="section-subtitle">Publie tes articles, vidéos, documents et créés de l’engagement !</p>
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterPublications('all')">Tout afficher</button>
+      <button class="filter-btn" onclick="filterPublications('pdf')">📄 Articles PDF</button>
+      <button class="filter-btn" onclick="filterPublications('video')">🎥 Vidéos</button>
+      <button class="filter-btn" onclick="filterPublications('webinar')">💻 Webinaires</button>
+    </div>
 
     <div class="pub-grid">
-      <div class="pub-card">
-        <div class="pub-title">Cybersécurité PME : Guide Africain</div>
-        <div class="pub-meta">Publié le 1 nov. 2025 | PDF</div>
-        <div class="pub-description">Étude sur les bonnes pratiques cyber pour les TPE/PME.</div>
-        <div class="pub-media"><embed src="exemple-article.pdf" type="application/pdf" width="100%" height="220px"/></div>
-        <a href="exemple-article.pdf" class="dl-btn" download>Télécharger</a>
-        <button class="like-btn" onclick="likeArticle(this)">👍 J'aime <span class="count">0</span></button>
-
-        <div class="comments-section">
-          <div class="comments-list"></div>
-          <form class="comment-form" onsubmit="addComment(event, this)">
-            <textarea required placeholder="Laissez un commentaire…"></textarea>
-            <button type="submit">Commenter</button>
-          </form>
+      <!-- Publication 1 - PDF -->
+      <article class="pub-card" data-type="pdf">
+        <div class="pub-header">
+          <span class="pub-type">Article PDF</span>
+          <h2 class="pub-title">Cybersécurité PME : Guide Africain</h2>
+          <div class="pub-meta">1 novembre 2025</div>
         </div>
-      </div>
-
-      <div class="pub-card">
-        <div class="pub-title">Webinaire Gouvernance Cyber</div>
-        <div class="pub-meta">Publié le 26 oct. 2025 | Vidéo</div>
-        <div class="pub-description">Replay de la conférence sur les enjeux cyber.</div>
-        <div class="pub-media"><iframe width="98%" height="225" src="https://www.youtube.com/embed/VIDEOCODE" allowfullscreen></iframe></div>
-        <button class="like-btn" onclick="likeArticle(this)">👍 J'aime <span class="count">0</span></button>
-
-        <div class="comments-section">
-          <div class="comments-list"></div>
-          <form class="comment-form" onsubmit="addComment(event, this)">
-            <textarea required placeholder="Votre avis…"></textarea>
-            <button type="submit">Commenter</button>
-          </form>
+        <div class="pub-body">
+          <p class="pub-description">
+            Étude complète sur les bonnes pratiques de cybersécurité pour les TPE/PME africaines. 
+            Guide pratique avec des recommandations adaptées au contexte local.
+          </p>
+          <div class="pub-media">
+            <div class="pub-media-placeholder">📄</div>
+          </div>
+          <div class="pub-actions">
+            <a href="exemple-article.pdf" class="dl-btn" download>📥 Télécharger le PDF</a>
+            <button class="like-btn" onclick="likeArticle(this)">
+              👍 J'aime <span class="count">12</span>
+            </button>
+          </div>
+          <div class="comments-section">
+            <div class="comments-header">💬 Commentaires (2)</div>
+            <div class="comments-list">
+              <div class="comment">
+                <div class="comment-author">Marie Dubois</div>
+                <div class="comment-text">Excellent guide ! Très utile pour notre entreprise.</div>
+              </div>
+              <div class="comment">
+                <div class="comment-author">Jean Martin</div>
+                <div class="comment-text">Merci pour ces conseils pratiques et accessibles.</div>
+              </div>
+            </div>
+            <form class="comment-form" onsubmit="addComment(event, this)">
+              <textarea required placeholder="Laissez un commentaire…"></textarea>
+              <button type="submit">Commenter</button>
+            </form>
+          </div>
         </div>
-      </div>
+      </article>
+
+      <!-- Publication 2 - Vidéo -->
+      <article class="pub-card" data-type="video">
+        <div class="pub-header">
+          <span class="pub-type">Vidéo</span>
+          <h2 class="pub-title">Webinaire Gouvernance Cyber</h2>
+          <div class="pub-meta">26 octobre 2025</div>
+        </div>
+        <div class="pub-body">
+          <p class="pub-description">
+            Replay de la conférence sur les enjeux de la gouvernance cyber et la mise en conformité RGPD. 
+            Discussion avec des experts du domaine.
+          </p>
+          <div class="pub-media">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+          </div>
+          <div class="pub-actions">
+            <button class="like-btn" onclick="likeArticle(this)">
+              👍 J'aime <span class="count">28</span>
+            </button>
+          </div>
+          <div class="comments-section">
+            <div class="comments-header">💬 Commentaires (1)</div>
+            <div class="comments-list">
+              <div class="comment">
+                <div class="comment-author">Sophie Laurent</div>
+                <div class="comment-text">Présentation très claire, merci pour le partage !</div>
+              </div>
+            </div>
+            <form class="comment-form" onsubmit="addComment(event, this)">
+              <textarea required placeholder="Votre avis…"></textarea>
+              <button type="submit">Commenter</button>
+            </form>
+          </div>
+        </div>
+      </article>
+
+      <!-- Publication 3 - Webinar -->
+      <article class="pub-card" data-type="webinar">
+        <div class="pub-header">
+          <span class="pub-type">Webinaire</span>
+          <h2 class="pub-title">Sécurité des Systèmes Cloud</h2>
+          <div class="pub-meta">15 octobre 2025</div>
+        </div>
+        <div class="pub-body">
+          <p class="pub-description">
+            Session interactive sur la sécurisation des infrastructures cloud. 
+            Bonnes pratiques, outils et retours d'expérience.
+          </p>
+          <div class="pub-media">
+            <div class="pub-media-placeholder">☁️</div>
+          </div>
+          <div class="pub-actions">
+            <a href="#" class="dl-btn">🔗 Voir le replay</a>
+            <button class="like-btn" onclick="likeArticle(this)">
+              👍 J'aime <span class="count">35</span>
+            </button>
+          </div>
+          <div class="comments-section">
+            <div class="comments-header">💬 Commentaires (0)</div>
+            <div class="comments-list"></div>
+            <form class="comment-form" onsubmit="addComment(event, this)">
+              <textarea required placeholder="Soyez le premier à commenter…"></textarea>
+              <button type="submit">Commenter</button>
+            </form>
+          </div>
+        </div>
+      </article>
+
+      <!-- Publication 4 - Article -->
+      <article class="pub-card" data-type="pdf">
+        <div class="pub-header">
+          <span class="pub-type">Article</span>
+          <h2 class="pub-title">Zero Trust Architecture 2025</h2>
+          <div class="pub-meta">8 octobre 2025</div>
+        </div>
+        <div class="pub-body">
+          <p class="pub-description">
+            Analyse approfondie des architectures Zero Trust et leur mise en œuvre 
+            dans les entreprises modernes. Cas d'usage et retours d'expérience.
+          </p>
+          <div class="pub-media">
+            <div class="pub-media-placeholder">🔒</div>
+          </div>
+          <div class="pub-actions">
+            <a href="#" class="dl-btn" download>📥 Télécharger</a>
+            <button class="like-btn" onclick="likeArticle(this)">
+              👍 J'aime <span class="count">45</span>
+            </button>
+          </div>
+          <div class="comments-section">
+            <div class="comments-header">💬 Commentaires (3)</div>
+            <div class="comments-list">
+              <div class="comment">
+                <div class="comment-author">Ahmed Benali</div>
+                <div class="comment-text">Article très complet sur le Zero Trust !</div>
+              </div>
+              <div class="comment">
+                <div class="comment-author">Claire Petit</div>
+                <div class="comment-text">Les cas d'usage sont très pertinents.</div>
+              </div>
+              <div class="comment">
+                <div class="comment-author">Thomas Girard</div>
+                <div class="comment-text">Merci pour cette analyse détaillée.</div>
+              </div>
+            </div>
+            <form class="comment-form" onsubmit="addComment(event, this)">
+              <textarea required placeholder="Laissez un commentaire…"></textarea>
+              <button type="submit">Commenter</button>
+            </form>
+          </div>
+        </div>
+      </article>
     </div>
   </main>
 
   <footer>
     <div class="social-links">
-      <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" target="_blank" class="social-link">LinkedIn</a>
-      <a href="https://github.com/christian-esaki1/" target="_blank" class="social-link">GitHub</a>
-      <a href="mailto:christian.esaki@gmail.com" class="social-link">Email</a>
+      <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" target="_blank" rel="noopener" class="social-link">
+        💼 LinkedIn
+      </a>
+      <a href="https://github.com/christian-esaki1/" target="_blank" rel="noopener" class="social-link">
+        👨‍💻 GitHub
+      </a>
+      <a href="mailto:christian.esaki@gmail.com" class="social-link">
+        📧 Email
+      </a>
     </div>
-    <p>© 2025 Christian ESAKI MUNDEKE — Tous droits réservés</p>
+    <p>© 2025 Christian ESAKI MUNDEKE — Expert en Cybersécurité</p>
   </footer>
 
+  <script src="js/navbar.js"></script>
   <script>
-    // --- Charger la navbar ---
-    fetch("navbar.html")
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("navbar-container").innerHTML = html;
-      });
-
-    // --- Like & commentaire JS ---
+    // Fonction pour liker un article
     function likeArticle(btn) {
       const countSpan = btn.querySelector('.count');
       let count = parseInt(countSpan.textContent, 10) || 0;
-      countSpan.textContent = count + 1;
+      
+      if (btn.classList.contains('liked')) {
+        count--;
+        btn.classList.remove('liked');
+      } else {
+        count++;
+        btn.classList.add('liked');
+      }
+      
+      countSpan.textContent = count;
     }
 
+    // Fonction pour ajouter un commentaire
     function addComment(event, form) {
       event.preventDefault();
+      
       const textarea = form.querySelector('textarea');
+      const commentsList = form.parentElement.querySelector('.comments-list');
+      const commentsHeader = form.parentElement.querySelector('.comments-header');
+      
+      // Créer le nouveau commentaire
       const comment = document.createElement('div');
       comment.className = 'comment';
-      comment.textContent = textarea.value;
-      form.parentElement.querySelector('.comments-list').appendChild(comment);
+      
+      const author = document.createElement('div');
+      author.className = 'comment-author';
+      author.textContent = 'Vous';
+      
+      const text = document.createElement('div');
+      text.className = 'comment-text';
+      text.textContent = textarea.value;
+      
+      comment.appendChild(author);
+      comment.appendChild(text);
+      commentsList.appendChild(comment);
+      
+      // Mettre à jour le compteur
+      const currentCount = commentsList.children.length;
+      commentsHeader.textContent = `💬 Commentaires (${currentCount})`;
+      
+      // Réinitialiser le formulaire
       textarea.value = '';
+      
+      // Scroll vers le nouveau commentaire
+      comment.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Fonction pour filtrer les publications
+    function filterPublications(type) {
+      const cards = document.querySelectorAll('.pub-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+      
+      // Gérer les boutons actifs
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      // Filtrer les cartes
+      cards.forEach(card => {
+        if (type === 'all') {
+          card.style.display = 'flex';
+        } else {
+          if (card.dataset.type === type) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        }
+      });
     }
   </script>
-
 </body>
 </html>
