@@ -1,45 +1,764 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Christian ESAKI | Cybersécurité & Gouvernance</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Christian ESAKI - Consultant en Cybersécurité spécialisé en gouvernance IT, audit de sécurité et protection des systèmes d'information">
+  <title>Christian ESAKI | Consultant Cybersécurité & Gouvernance IT</title>
+  
+  <!-- Sécurité DevSecOps -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 img-src 'self' data: https:;
+                 style-src 'self' 'unsafe-inline';
+                 script-src 'self';
+                 object-src 'none';
+                 frame-ancestors 'none';
+                 base-uri 'self';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="index,follow">
+  
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #0f172a;
+      color: #f1f5f9;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Animation de fond */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      opacity: 0.08;
+      z-index: -2;
+      animation: gradientShift 15s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { opacity: 0.08; }
+      50% { opacity: 0.12; }
+    }
+
+    /* Particules animées */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: rgba(102, 126, 234, 0.3);
+      border-radius: 50%;
+      animation: float 20s infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: center;
+      animation: fadeInUp 1s ease;
+    }
+
+    @media (max-width: 968px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+
+    /* Photo de profil */
+    .profile-section {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-photo-wrapper {
+      position: relative;
+      width: 350px;
+      height: 350px;
+    }
+
+    .profile-photo-wrapper::before {
+      content: "";
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: -20px;
+      bottom: -20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      animation: rotate 10s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid #0f172a;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 968px) {
+      .profile-photo-wrapper {
+        width: 280px;
+        height: 280px;
+      }
+    }
+
+    /* Texte Hero */
+    .hero-text {
+      animation: fadeInRight 1s ease 0.3s backwards;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(102, 126, 234, 0.15);
+      color: #a5b4fc;
+      padding: 0.6rem 1.2rem;
+      border-radius: 2rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(102, 126, 234, 0.3);
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      letter-spacing: -2px;
+      line-height: 1.1;
+    }
+
+    .hero h2 {
+      font-size: 1.8rem;
+      color: #cbd5e1;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      line-height: 1.4;
+    }
+
+    .hero-description {
+      font-size: 1.2rem;
+      color: #94a3b8;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 1.2rem 2.5rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    .cta-secondary {
+      background: transparent;
+      border: 2px solid rgba(102, 126, 234, 0.5);
+      color: #cbd5e1;
+    }
+
+    .cta-secondary:hover {
+      background: rgba(102, 126, 234, 0.1);
+      border-color: #667eea;
+    }
+
+    /* Section Expertise */
+    .expertise-section {
+      padding: 6rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+      animation: fadeInUp 1s ease;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 900;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      color: #94a3b8;
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Grille d'expertise */
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .expertise-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .expertise-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .expertise-card:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(102, 126, 234, 0.3);
+      box-shadow: 0 25px 60px rgba(102, 126, 234, 0.2);
+    }
+
+    .expertise-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .expertise-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .expertise-card:hover .expertise-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .expertise-card h3 {
+      font-size: 1.5rem;
+      color: #f1f5f9;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .expertise-card p {
+      color: #94a3b8;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .expertise-list {
+      list-style: none;
+    }
+
+    .expertise-list li {
+      color: #cbd5e1;
+      padding-left: 1.5rem;
+      margin-bottom: 0.75rem;
+      position: relative;
+      font-size: 0.95rem;
+    }
+
+    .expertise-list li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #667eea;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    /* Section Valeurs */
+    .values-section {
+      padding: 6rem 2rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .value-item {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .value-number {
+      font-size: 3rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .value-label {
+      color: #cbd5e1;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    /* Section CTA finale */
+    .final-cta {
+      padding: 6rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .final-cta h2 {
+      font-size: 2.8rem;
+      color: #f1f5f9;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .final-cta p {
+      color: #94a3b8;
+      font-size: 1.3rem;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      color: #cbd5e1;
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      color: #818cf8;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+    }
+
+    .social-links a:hover {
+      color: #a5b4fc;
+      transform: translateY(-2px);
+    }
+
+    footer p {
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero h2 {
+        font-size: 1.4rem;
+      }
+
+      .hero-description {
+        font-size: 1.1rem;
+      }
+
+      .section-title {
+        font-size: 2.2rem;
+      }
+
+      .hero-cta {
+        justify-content: center;
+      }
+
+      .expertise-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .final-cta h2 {
+        font-size: 2rem;
+      }
+
+      .final-cta p {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <!-- NAVBAR DYNAMIQUE -->
   <div id="navbar-placeholder"></div>
 
+  <!-- Particules animées -->
+  <div class="particles">
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+    <div class="particle" style="left: 40%; animation-delay: 1s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 2.5s;"></div>
+    <div class="particle" style="left: 80%; animation-delay: 4.5s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 1.5s;"></div>
+  </div>
+
+  <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <img src="images/esaki.jpg" alt="Photo de Christian ESAKI" class="profile-photo">
-      <h1>Christian ESAKI MUNDEKE</h1>
-      <h2>Apprenti en Cybersécurité & Gouvernance — Efrei Paris</h2>
-      <p>
-        Passionné par la cybersécurité, la gouvernance IT et la sensibilisation cyber,
-        j'œuvre pour renforcer la souveraineté numérique et la sécurité des systèmes d’information
-        en Afrique et en Europe.
-      </p>
-      <a href="parcours.html" class="cta-button">Découvrir mon parcours</a>
+      <div class="profile-section">
+        <div class="profile-photo-wrapper">
+          <img src="images/esaki.jpg" alt="Christian ESAKI MUNDEKE - Consultant Cybersécurité" class="profile-photo">
+        </div>
+      </div>
+
+      <div class="hero-text">
+        <span class="hero-badge">🔒 Consultant Cybersécurité</span>
+        <h1>Christian ESAKI<br>MUNDEKE</h1>
+        <h2>Expert en Cybersécurité & Gouvernance IT</h2>
+        <p class="hero-description">
+          Spécialisé dans l'audit de sécurité, l'analyse de risques et la mise en conformité des systèmes d'information. 
+          Je protège vos actifs numériques et renforce votre posture de sécurité selon les standards internationaux.
+        </p>
+        <div class="hero-cta">
+          <a href="contact.html" class="cta-button">
+            📧 Me contacter
+          </a>
+          <a href="projets.html" class="cta-button cta-secondary">
+            💼 Mes réalisations
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section>
-    <h2 class="section-title">À propos de moi</h2>
-    <p class="section-subtitle">
-      J’ai réalisé un stage en cybersécurité à PariSanté Campus où j’ai mené une analyse de risques du SI,
-      identifié les faiblesses cyber, et proposé des mesures correctives basées sur ISO 27001 & EBIOS RM.
-    </p>
+  <!-- Section Expertise -->
+  <section class="expertise-section">
+    <div class="section-header">
+      <h2 class="section-title">Mes Domaines d'Expertise</h2>
+      <p class="section-subtitle">
+        Des solutions complètes pour sécuriser votre infrastructure et protéger vos données sensibles
+      </p>
+    </div>
+
+    <div class="expertise-grid">
+      <article class="expertise-card">
+        <div class="expertise-icon">🛡️</div>
+        <h3>Audit & Analyse de Risques</h3>
+        <p>Évaluation complète de la posture de sécurité de vos systèmes d'information</p>
+        <ul class="expertise-list">
+          <li>Audit de sécurité SI selon ISO 27001</li>
+          <li>Analyse de risques EBIOS RM</li>
+          <li>Cartographie des actifs critiques</li>
+          <li>Identification des vulnérabilités</li>
+          <li>Plans de remédiation priorisés</li>
+        </ul>
+      </article>
+
+      <article class="expertise-card">
+        <div class="expertise-icon">🎯</div>
+        <h3>Tests d'Intrusion & Red Team</h3>
+        <p>Simulation d'attaques pour identifier et corriger les failles de sécurité</p>
+        <ul class="expertise-list">
+          <li>Pentest applicatif et infrastructure</li>
+          <li>Tests d'intrusion web (OWASP Top 10)</li>
+          <li>Exploitation de vulnérabilités</li>
+          <li>Simulation de phishing ciblé</li>
+          <li>Rapports détaillés avec recommandations</li>
+        </ul>
+      </article>
+
+      <article class="expertise-card">
+        <div class="expertise-icon">📋</div>
+        <h3>Gouvernance & Conformité</h3>
+        <p>Mise en conformité réglementaire et pilotage de la sécurité</p>
+        <ul class="expertise-list">
+          <li>Conformité RGPD et ISO 27001</li>
+          <li>Élaboration de politiques de sécurité (PSSI)</li>
+          <li>Documentation et procédures</li>
+          <li>Gestion des risques cyber</li>
+          <li>Audits de conformité</li>
+        </ul>
+      </article>
+
+      <article class="expertise-card">
+        <div class="expertise-icon">🚨</div>
+        <h3>SOC & Détection de Menaces</h3>
+        <p>Surveillance continue et réponse aux incidents de sécurité</p>
+        <ul class="expertise-list">
+          <li>Mise en place de SOC et SIEM</li>
+          <li>Détection d'anomalies par IA</li>
+          <li>Threat Intelligence & Hunting</li>
+          <li>Gestion des incidents (CERT)</li>
+          <li>Plan de réponse à incident (PRI)</li>
+        </ul>
+      </article>
+
+      <article class="expertise-card">
+        <div class="expertise-icon">☁️</div>
+        <h3>Sécurité Cloud & Infrastructure</h3>
+        <p>Protection des environnements cloud et hybrides</p>
+        <ul class="expertise-list">
+          <li>Sécurisation AWS, Azure, GCP</li>
+          <li>Architecture Zero Trust</li>
+          <li>Gestion des identités (IAM)</li>
+          <li>Durcissement de serveurs (Linux/Windows)</li>
+          <li>DevSecOps et CI/CD sécurisé</li>
+        </ul>
+      </article>
+
+      <article class="expertise-card">
+        <div class="expertise-icon">👥</div>
+        <h3>Sensibilisation & Formation</h3>
+        <p>Renforcement de la culture sécurité au sein des organisations</p>
+        <ul class="expertise-list">
+          <li>Campagnes de sensibilisation cyber</li>
+          <li>Formation du personnel IT</li>
+          <li>Simulations de phishing</li>
+          <li>Ateliers pratiques de sécurité</li>
+          <li>Communication sur les bonnes pratiques</li>
+        </ul>
+      </article>
+    </div>
   </section>
 
+  <!-- Section Valeurs -->
+  <section class="values-section">
+    <div class="section-header">
+      <h2 class="section-title">Pourquoi Me Choisir</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-item">
+        <div class="value-number">40+</div>
+        <div class="value-label">Certifications</div>
+      </div>
+      <div class="value-item">
+        <div class="value-number">100%</div>
+        <div class="value-label">Engagement</div>
+      </div>
+      <div class="value-item">
+        <div class="value-number">24/7</div>
+        <div class="value-label">Disponibilité</div>
+      </div>
+      <div class="value-item">
+        <div class="value-number">ISO</div>
+        <div class="value-label">Standards</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formation -->
+  <section class="expertise-section">
+    <div class="section-header">
+      <h2 class="section-title">Formation & Parcours</h2>
+      <p class="section-subtitle">
+        Étudiant en Mastère Cybersécurité à l'Efrei Paris, école d'ingénieurs de référence
+      </p>
+    </div>
+    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+      <div class="expertise-card" style="display: inline-block; text-align: left;">
+        <div class="expertise-icon" style="margin: 0 auto 1.5rem;">🎓</div>
+        <h3 style="text-align: center;">Efrei Paris</h3>
+        <p style="text-align: center; margin-bottom: 1.5rem;">
+          École d'ingénieurs spécialisée en technologies numériques et cybersécurité
+        </p>
+        <ul class="expertise-list">
+          <li>Mastère Expert en Cybersécurité</li>
+          <li>Spécialisation Gouvernance & Audit</li>
+          <li>Formation continue et certifications</li>
+          <li>Veille technologique permanente</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <section class="final-cta">
+    <h2>Prêt à Sécuriser Votre Infrastructure ?</h2>
+    <p>
+      Discutons de vos besoins en cybersécurité et construisons ensemble 
+      une stratégie de protection adaptée à votre organisation.
+    </p>
+    <div class="hero-cta" style="justify-content: center;">
+      <a href="contact.html" class="cta-button">
+        📧 Prendre contact
+      </a>
+      <a href="certifications.html" class="cta-button cta-secondary">
+        🎓 Voir mes certifications
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
     <div class="social-links">
-      <a href="https://linkedin.com/in/christian-esaki-mundeke">LinkedIn</a>
-      <a href="https://github.com/christian-esaki1">GitHub</a>
+      <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/christian-esaki1/" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a href="mailto:christian.esaki@gmail.com">Email</a>
     </div>
-    <p>© 2025 Christian ESAKI MUNDEKE — Tous droits réservés</p>
+    <p>© 2025 Christian ESAKI MUNDEKE — Consultant en Cybersécurité</p>
   </footer>
 
   <script src="js/navbar.js"></script>
