@@ -1,143 +1,789 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Certifications & MOOCs | Christian ESAKI</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Certifications et formations de Christian ESAKI en cybersécurité, cloud et gouvernance IT">
+  <title>Certifications - Christian ESAKI | Expert Cybersécurité</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #0f172a;
+      color: #1f2937;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      opacity: 0.05;
+      z-index: -1;
+    }
+
+    /* Section principale */
+    .certifications-section {
+      padding: 6rem 1.5rem 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    .section-title {
+      font-size: 3.5rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      letter-spacing: -1px;
+    }
+
+    .section-subtitle {
+      color: #94a3b8;
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* Statistiques */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+      animation: fadeIn 1s ease 0.3s backwards;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: #cbd5e1;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+
+    /* Filtres par catégorie */
+    .filter-section {
+      margin-bottom: 3rem;
+      animation: fadeIn 1s ease 0.5s backwards;
+    }
+
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      padding: 0.75rem 1.5rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    .filter-tab:hover,
+    .filter-tab.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-color: transparent;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    /* Grille de certifications */
+    .certifications-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 2rem;
+      animation: fadeInUp 1s ease 0.7s backwards;
+    }
+
+    @media (max-width: 768px) {
+      .certifications-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Carte de certification */
+    .cert-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.25rem;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .cert-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .cert-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(102, 126, 234, 0.3);
+      box-shadow: 0 20px 50px rgba(102, 126, 234, 0.15);
+    }
+
+    .cert-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .cert-header {
+      padding: 1.75rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .cert-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .cert-card:hover .cert-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .cert-info {
+      flex: 1;
+    }
+
+    .cert-title {
+      font-size: 1.15rem;
+      color: #f1f5f9;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .cert-provider {
+      color: #a5b4fc;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .cert-body {
+      padding: 0 1.75rem 1.75rem;
+    }
+
+    .cert-date {
+      display: inline-block;
+      background: rgba(102, 126, 234, 0.1);
+      color: #a5b4fc;
+      padding: 0.4rem 0.9rem;
+      border-radius: 1.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .cert-description {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .cert-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      background: rgba(255, 255, 255, 0.05);
+      color: #cbd5e1;
+      padding: 0.35rem 0.75rem;
+      border-radius: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .skill-tag:hover {
+      background: rgba(102, 126, 234, 0.2);
+      border-color: #667eea;
+      color: #a5b4fc;
+    }
+
+    /* Badges premium */
+    .cert-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 1.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
+    }
+
+    /* Section CTA */
+    .cta-section {
+      margin-top: 5rem;
+      padding: 3.5rem 2rem;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 2rem;
+      text-align: center;
+      animation: fadeInUp 1s ease 1s backwards;
+    }
+
+    .cta-title {
+      font-size: 2.5rem;
+      color: #f1f5f9;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .cta-text {
+      color: #94a3b8;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 1.2rem 3rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      color: #cbd5e1;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      margin-top: 6rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-link {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #cbd5e1;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 2.5rem;
+      }
+
+      .section-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .certifications-section {
+        padding: 5rem 1rem 3rem;
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+      }
+
+      .cta-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <!-- Navigation -->
-  <div id="navbar-container"></div>
-  <main>
-    <section class="section container">
-      <h1 class="section-title">Certifications & MOOCs</h1>
+  <div id="navbar-placeholder"></div>
+
+  <main class="certifications-section">
+    <header class="section-header">
+      <h1 class="section-title">🎓 Certifications & Formations</h1>
       <p class="section-subtitle">
-        J’ai suivi plusieurs formations reconnues dans le domaine de la cybersécurité, de la gouvernance IT et de l’intelligence artificielle.  
-        Ces MOOCs renforcent mes compétences pratiques et ma veille technologique continue.
+        Formations reconnues et certifications professionnelles dans les domaines de la cybersécurité, 
+        du cloud computing, de la gouvernance IT et de l'intelligence artificielle
       </p>
+    </header>
 
-      <div class="projects-grid">
-
-        <!-- MOOC ANSSI -->
-        <article class="project-card card">
-          <div class="project-header">
-            <div class="project-icon">🛡️</div>
-            <h3 class="project-title">MOOC — Sécurité numérique : l’affaire de tous</h3>
-            <div class="project-category">ANSSI (Agence nationale de la sécurité des systèmes d'information)</div>
-          </div>
-          <div class="project-body">
-            <p>
-              Formation officielle de l’ANSSI destinée à sensibiliser et former les professionnels aux bonnes pratiques de cybersécurité.
-              J’y ai approfondi les concepts de sécurité des systèmes, de gestion des risques et de prévention des attaques numériques.
-            </p>
-            <div class="project-tags">
-              <span class="tag">ANSSI</span>
-              <span class="tag">Sensibilisation</span>
-              <span class="tag">Gestion des risques</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- MOOC FUN Cybersécurité -->
-        <article class="project-card card">
-          <div class="project-header">
-            <div class="project-icon">💻</div>
-            <h3 class="project-title">MOOC — Introduction à la cybersécurité</h3>
-            <div class="project-category">FUN-MOOC / Université de Lorraine</div>
-          </div>
-          <div class="project-body">
-            <p>
-              Ce MOOC m’a permis d’acquérir une compréhension approfondie des menaces, des vulnérabilités et des outils de défense.
-              Il aborde la cryptographie, la sécurité réseau et les enjeux de la cybersécurité dans les organisations.
-            </p>
-            <div class="project-tags">
-              <span class="tag">Sécurité réseau</span>
-              <span class="tag">Cryptographie</span>
-              <span class="tag">Vulnérabilités</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- MOOC Cisco -->
-        <article class="project-card card">
-          <div class="project-header">
-            <div class="project-icon">🌐</div>
-            <h3 class="project-title">Introduction to Cybersecurity</h3>
-            <div class="project-category">Cisco Networking Academy</div>
-          </div>
-          <div class="project-body">
-            <p>
-              Programme en ligne dispensé par Cisco, introduisant les principes fondamentaux de la sécurité informatique, 
-              la protection des réseaux et la détection des cybermenaces à l’échelle mondiale.
-            </p>
-            <div class="project-tags">
-              <span class="tag">Cisco</span>
-              <span class="tag">Network Security</span>
-              <span class="tag">Cyber Threats</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- MOOC OpenClassrooms -->
-        <article class="project-card card">
-          <div class="project-header">
-            <div class="project-icon">📚</div>
-            <h3 class="project-title">Apprenez les bases du hacking éthique</h3>
-            <div class="project-category">OpenClassrooms</div>
-          </div>
-          <div class="project-body">
-            <p>
-              Formation pratique sur les techniques de test d’intrusion, la méthodologie du pentest et l’éthique du hacker.
-              J’y ai expérimenté des outils comme Metasploit, Wireshark et Burp Suite dans un cadre légal et sécurisé.
-            </p>
-            <div class="project-tags">
-              <span class="tag">Pentesting</span>
-              <span class="tag">Éthique</span>
-              <span class="tag">Wireshark</span>
-              <span class="tag">Metasploit</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- MOOC IA -->
-        <article class="project-card card">
-          <div class="project-header">
-            <div class="project-icon">🤖</div>
-            <h3 class="project-title">MOOC — Intelligence Artificielle pour la cybersécurité</h3>
-            <div class="project-category">Coursera / IBM Skills Network</div>
-          </div>
-          <div class="project-body">
-            <p>
-              Ce cours m’a permis de comprendre comment les algorithmes d’IA peuvent être utilisés pour détecter des menaces,
-              analyser des logs et automatiser la réponse à incident (Security Automation & Analytics).
-            </p>
-            <div class="project-tags">
-              <span class="tag">IA</span>
-              <span class="tag">Machine Learning</span>
-              <span class="tag">Threat Detection</span>
-            </div>
-          </div>
-        </article>
-
+    <!-- Statistiques -->
+    <div class="stats-container">
+      <div class="stat-card">
+        <div class="stat-number">40+</div>
+        <div class="stat-label">Certifications</div>
       </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="social-links">
-      <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" class="social-link" target="_blank" rel="noopener noreferrer" title="LinkedIn">in</a>
-      <a href="https://github.com/christian-esaki1/" class="social-link" target="_blank" rel="noopener noreferrer" title="GitHub">GH</a>
-      <a href="mailto:christian.esaki@gmail.com" class="social-link" title="Email">@</a>
+      <div class="stat-card">
+        <div class="stat-number">5</div>
+        <div class="stat-label">MOOCs Officiels</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">2024</div>
+        <div class="stat-label">Dernière mise à jour</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Réussite</div>
+      </div>
     </div>
-    <p>© 2025 Christian ESAKI MUNDEKE — Tous droits réservés</p>
-  </footer>
-    <script>
-  fetch("navbar.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("navbar-container").innerHTML = html;
-    });
-</script>
-</body>
-</html>
+
+    <!-- Filtres -->
+    <div class="filter-section">
+      <div class="filter-tabs">
+        <button class="filter-tab active" onclick="filterCerts('all')">Tout afficher</button>
+        <button class="filter-tab" onclick="filterCerts('mooc')">MOOCs Officiels</button>
+        <button class="filter-tab" onclick="filterCerts('security')">Cybersécurité</button>
+        <button class="filter-tab" onclick="filterCerts('cloud')">Cloud & Infrastructure</button>
+        <button class="filter-tab" onclick="filterCerts('governance')">Gouvernance IT</button>
+        <button class="filter-tab" onclick="filterCerts('ai')">IA & ML</button>
+      </div>
+    </div>
+
+    <!-- Grille de certifications -->
+    <div class="certifications-grid">
+      <!-- MOOCs Officiels -->
+      <article class="cert-card" data-category="mooc">
+        <span class="cert-badge">ANSSI</span>
+        <div class="cert-header">
+          <div class="cert-icon">🛡️</div>
+          <div class="cert-info">
+            <h3 class="cert-title">Sécurité numérique : l'affaire de tous</h3>
+            <div class="cert-provider">ANSSI</div>
+          </div>
+        </div>
+        <div class="cert-body">
+          <span class="cert-date">📅 2024</span>
+          <p class="cert-description">
+            Formation officielle de l'Agence nationale de la sécurité des systèmes d'information 
+            couvrant les bonnes pratiques de cybersécurité et la gestion des risques numériques.
+          </p>
+          <div class="cert-skills">
+            <span class="skill-tag">Sensibilisation</span>
+            <span class="skill-tag">Gestion des risques</span>
+            <span class="skill-tag">Bonnes pratiques</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="cert-card" data-category="mooc">
+        <span class="cert-badge">EBIOS</span>
+        <div class="cert-header">
+          <div class="cert-icon">📊</div>
+          <div class="cert-info">
+            <h3 class="cert-title">Club EBIOS</h3>
+            <div class="cert-provider">ANSSI</div>
+          </div>
+        </div>
+        <div class="cert-body">
+          <span class="cert-date">📅 2024</span>
+          <p class="cert-description">
+            Formation à la méthode EBIOS Risk Manager pour l'analyse et le traitement des risques 
+            de sécurité des systèmes d'information.
+          </p>
+          <div class="cert-skills">
+            <span class="skill-tag">EBIOS RM</span>
+            <span class="skill-tag">Analyse de risques</span>
+            <span class="skill-tag">ISO 27005</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="cert-card" data-category="mooc governance">
+        <span class="cert-badge">CNIL</span>
+        <div class="cert-header">
+          <div class="cert-icon">🔐</div>
+          <div class="cert-info">
+            <h3 class="cert-title">Formation RGPD</h3>
+            <div class="cert-provider">CNIL</div>
+          </div>
+        </div>
+        <div class="cert-body">
+          <span class="cert-date">📅 2024</span>
+          <p class="cert-description">
+            Formation officielle de la CNIL sur le Règlement Général sur la Protection des Données 
+            et sa mise en œuvre dans les organisations.
+          </p>
+          <div class="cert-skills">
+            <span class="skill-tag">RGPD</span>
+            <span class="skill-tag">Protection des données</span>
+            <span class="skill-tag">Conformité</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="cert-card" data-category="mooc">
+        <span class="cert-badge">SGDSN</span>
+        <div class="cert-header">
+          <div class="cert-icon">🏛️</div>
+          <div class="cert-info">
+            <h3 class="cert-title">MOOC SGDSN</h3>
+            <div class="cert-provider">Secrétariat Général de la Défense et de la Sécurité Nationale</div>
+          </div>
+        </div>
+        <div class="cert-body">
+          <span class="cert-date">📅 2024</span>
+          <p class="cert-description">
+            Formation sur la défense et la sécurité nationale dans le contexte numérique.
+          </p>
+          <div class="cert-skills">
+            <span class="skill-tag">Sécurité nationale</span>
+            <span class="skill-tag">Défense</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="cert-card" data-category="mooc security">
+        <span class="cert-badge">SENSYCRISE</span>
+        <div class="cert-header">
+          <div class="cert-icon">⚠️</div>
+          <div class="cert-info">
+            <h3 class="cert-title">SENSYCRISE</h3>
+            <div class="cert-provider">Formation gestion de crise</div>
+          </div>
+        </div>
+        <div class="cert-body">
+          <span class="cert-date">📅 2024</span>
+          <p class="cert-description">
+            Formation à la gestion de crise cyber et à la réponse aux incidents de sécurité.
+          </p>
+          <div class="cert-skills">
+            <span class="skill-tag">Gestion de crise</span>
+            <span class="skill-tag">Réponse à incident</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Certifications LinkedIn Learning - Cybersécurité -->
+      <article class="cert-card" data-category="security">
+        <div class="cert-header">
+          <div class="cert-icon">💼</div>
+          <div class="cert-info">
+            <h3 class="cert-title">Les fondements de la sécurité informatique et de la cybersécurité</h3>
+            <div class="cert-provider">LinkedIn Learning</div>
+          </div>
+        </div>
+        <div class="cert-body">
+          <span class="cert-date">📅 Septembre 2024</span>
+          <p class="cert-description">
+            Formation complète sur les principes fondamentaux de la cybersécurité et de la sécurité informatique.
+          </p>
+          <div class="cert-skills">
+            <span class="skill-tag">Cybersécurité</span>
+            <span class="skill-tag">Risques</span>
+            <span class="skill-tag">Linux</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="cert-card" data-category="security">
+        <div class="cert-header">
+          <div class="cert-icon">🔒</div>
+          <div class="cert-info">
+            <h3 class="cert-title">La sécurité informatique et cybersécurité : Niveau avancé</h3>
+            <div class="cert-provider">LinkedIn Learning</div>
+          </div>
+        </div>
+        <div class="cert-body">
+          <span class="cert-date">📅 2024</span>
+          <p class="cert-description">
+            Formation avancée sur les techniques et stratégies de sécurité informatique.
+          </p>
+          <div class="cert-skills">
+            <span class="skill-tag">Sécurité avancée</span>
+            <span class="skill-tag">Threat hunting</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="cert-card" data-category="security">
+        <div class="cert-header">
+          <div class="cert-icon">🌐</div>
+          <div class="cert-info">
+            <h3 class="cert-title">Découvrir la cryptographie et la sécurité des réseaux</h3>
+            <div class="cert-provider">LinkedIn Learning</div>
+          </div>
+        </div>
+        <div class="cert-body">
+          <span class="cert-date">📅 2024</span>
+          <p class="cert-description">
+            Formation sur les principes de cryptographie et la sécurisation des infrastructures réseau.
+          </p>
+          <div class="cert-skills">
+            <span class="skill-tag">Cryptographie</span>
+            <span class="skill-tag">Sécurité réseau</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="cert-card" data-category="security">
+        <div class="cert-header">
+          <div class="cert-icon">🛡️</div>
+          <div class="cert-info">
+            <h3 class="cert-title">Comprendre et configurer un firewall</h3>
+            <div class="cert-provider">LinkedIn Learning</div>
+          </div>
+        </div>
+        <div class="cert-body">
+          <span class="cert-date">📅 2024</span>
+          <p class="cert-description">
+            Configuration et gestion des pare-feu pour la protection des infrastructures.
+          </p>
+          <div class="cert-skills">
+            <span class="skill-tag">Firewall</span>
+            <span class="skill-tag">Network Security</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="cert-card" data-category="security">
+        <div class="cert-header">
+          <div class="cert-icon">🖥️</div>
+          <div class="cert-info">
+            <h3 class="cert-title">L'essentiel de Kali Linux</h3>
+            <div class="cert-provider">LinkedIn Learning</div>
+          </div>
+        </div>
+        <div class="cert-body">
+          <span class="cert-date">📅 2024</span>
+          <p class="cert-description">
+            Maîtrise de Kali Linux et de ses outils pour les tests d'intrusion et l'audit de sécurité.
+          </p>
+          <div class="cert-skills">
+            <span class="skill-tag">Kali Linux</span>
+            <span class="skill-tag">Pentesting</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="cert-card" data-category="security">
+        <div class="cert-header">
+          <div class="cert-icon">🌍</div>
+          <div class="cert-info">
+            <h3 class="cert-title">La sécurité des applications web</h3>
+            <div class="cert-provider">LinkedIn Learning</div>
+          </div>
+        </div>
+        <div class="cert-body">
+          <span class="cert-date">📅 2024</span>
+          <p class="cert-description">
+            Sécurisation des applications web contre les vulnérabilités OWASP Top 10.
+          </p>
+          <div class="cert-skills">
+            <span class="skill-tag">Web Security</span>
+            <span class="skill-tag">OWASP</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Microsoft Cybersécurité -->
+      <article class="cert-card" data-category="security cloud">
+        <div class="cert-header">
+          <div class="cert-icon">🪟</div>
+          <div class="cert-info">
+            <h3 class="cert-title">Microsoft Cybersécurité : Les concepts, les solutions et la protection avec l'IA</h3>
+            <div class="cert-provider">LinkedIn Learning</div>
+          </div>
+        </div>
+        <div class="cert-body">
+          <span class="cert-date">📅 2024</span>
+          <p class="cert-description">
+            Vue d'ensemble des solutions de sécurité Microsoft et intégration de l'IA dans la protection.
+          </p>
+          <div class="cert-skills">
+            <span class="skill-tag">Microsoft Security</span>
+            <span class="skill-tag">IA</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="cert-card" data-category="security">
+        <div class="cert-header">
+          <div class="cert-icon">🔐</div>
+          <div class="cert-info">
+            <h3 class="cert-title">Microsoft Cybersécurité : Sécuriser Active Directory</h3>
+            <div class="cert-provider">LinkedIn Learning</div>
+          </div>
+        </div>
+        <div class="cert-body">
+          <span class="cert-date">📅 2024</span>
+          <p class="cert-description">
+            Sécurisation d'Active Directory contre les menaces actuelles et les attaques sophistiquées.
+          </p>
+          <div class="cert-skills">
+            <span class="skill-tag">Active Directory</span>
+            <span class="skill-tag">Windows Security</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="cert-card" data-category="security">
+        <div class="cert-header">
+          <div class="cert-icon">🛡️</div>
+          <div class="cert-info">
+            <h3 class="cert-title">Microsoft Defender pour Endpoint</h3>
+            <div class="cert-provider">LinkedIn Learning</div>
+          </div>
+        </div>
+        <div class="cert-body">
+          <span class="cert-date">📅 Septembre 2024</span>
+          <p class="cert-description">
+            Déploiement et gestion de Microsoft Defender pour la protection des endpoints.
+          </p>
+          <div class="cert-skills">
+            <span class="skill-tag">EDR</span>
+            <span class="skill-tag">Endpoint Security</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="cert-card" data-category="security cloud">
+        <div class="cert-header">
+          <div class="cert-icon">📊</div>
+          <div class="cert-info">
+            <h3 class="cert-title">Microsoft Sentinel : Déploiement et gestion du SIEM</h3>
+            <div class="cert-provider">LinkedIn Learning</div>
+          </div>
+        </div>
+        <div class="cert-body">
