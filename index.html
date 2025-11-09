@@ -177,21 +177,6 @@
       letter-spacing: 1px;
       margin-bottom: 1.5rem;
       border: 1px solid rgba(102, 126, 234, 0.3);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-badge::before {
-      content: "⬢";
-      font-size: 1.2rem;
-      margin-right: 0.5rem;
-      display: inline-block;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.7; transform: scale(1.1); }
     }
 
     .hero h1 {
@@ -254,11 +239,6 @@
       height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
       transition: left 0.5s ease;
-    }
-
-    .cta-button .icon {
-      font-size: 1.3rem;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
     }
 
     .cta-button:hover {
@@ -365,38 +345,6 @@
       margin-bottom: 1.5rem;
       box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
       transition: transform 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .expertise-icon::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        45deg,
-        transparent,
-        rgba(255, 255, 255, 0.1),
-        transparent
-      );
-      transform: rotate(45deg);
-      animation: shine 3s ease-in-out infinite;
-    }
-
-    @keyframes shine {
-      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-    }
-
-    .expertise-icon::after {
-      content: attr(data-icon);
-      font-size: 2.5rem;
-      position: relative;
-      z-index: 1;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
     }
 
     .expertise-card:hover .expertise-icon {
@@ -627,7 +575,7 @@
       </div>
 
       <div class="hero-text">
-        <span class="hero-badge">Consultant Cybersécurité</span>
+        <span class="hero-badge">🔒 Consultant Cybersécurité</span>
         <h1>Christian ESAKI<br>MUNDEKE</h1>
         <h2>Expert en Cybersécurité & Gouvernance IT</h2>
         <p class="hero-description">
@@ -636,10 +584,10 @@
         </p>
         <div class="hero-cta">
           <a href="contact.html" class="cta-button">
-            <span class="icon">✉</span> Me contacter
+            📧 Me contacter
           </a>
           <a href="projets.html" class="cta-button cta-secondary">
-            <span class="icon">◈</span> Mes réalisations
+            💼 Mes réalisations
           </a>
         </div>
       </div>
@@ -657,7 +605,7 @@
 
     <div class="expertise-grid">
       <article class="expertise-card">
-        <div class="expertise-icon" data-icon="◈"></div>
+        <div class="expertise-icon">🛡️</div>
         <h3>Audit & Analyse de Risques</h3>
         <p>Évaluation complète de la posture de sécurité de vos systèmes d'information</p>
         <ul class="expertise-list">
@@ -670,7 +618,7 @@
       </article>
 
       <article class="expertise-card">
-        <div class="expertise-icon" data-icon="⬢"></div>
+        <div class="expertise-icon">🎯</div>
         <h3>Tests d'Intrusion & Red Team</h3>
         <p>Simulation d'attaques pour identifier et corriger les failles de sécurité</p>
         <ul class="expertise-list">
@@ -683,7 +631,7 @@
       </article>
 
       <article class="expertise-card">
-        <div class="expertise-icon" data-icon="⬣"></div>
+        <div class="expertise-icon">📋</div>
         <h3>Gouvernance & Conformité</h3>
         <p>Mise en conformité réglementaire et pilotage de la sécurité</p>
         <ul class="expertise-list">
@@ -696,7 +644,7 @@
       </article>
 
       <article class="expertise-card">
-        <div class="expertise-icon" data-icon="◉"></div>
+        <div class="expertise-icon">🚨</div>
         <h3>SOC & Détection de Menaces</h3>
         <p>Surveillance continue et réponse aux incidents de sécurité</p>
         <ul class="expertise-list">
@@ -709,7 +657,7 @@
       </article>
 
       <article class="expertise-card">
-        <div class="expertise-icon" data-icon="◬"></div>
+        <div class="expertise-icon">☁️</div>
         <h3>Sécurité Cloud & Infrastructure</h3>
         <p>Protection des environnements cloud et hybrides</p>
         <ul class="expertise-list">
@@ -722,7 +670,7 @@
       </article>
 
       <article class="expertise-card">
-        <div class="expertise-icon" data-icon="◐"></div>
+        <div class="expertise-icon">👥</div>
         <h3>Sensibilisation & Formation</h3>
         <p>Renforcement de la culture sécurité au sein des organisations</p>
         <ul class="expertise-list">
@@ -766,19 +714,19 @@
     <div class="section-header">
       <h2 class="section-title">Formation & Parcours</h2>
       <p class="section-subtitle">
-        Étudiant en Mastère Cybersécurité à l'Efrei Paris, école d'ingénieurs de référence
+        Étudiant en Master Of Science Cybersécurité & IA à l'Efrei Paris, école d'ingénieurs
       </p>
     </div>
     <div style="max-width: 800px; margin: 0 auto; text-align: center;">
       <div class="expertise-card" style="display: inline-block; text-align: left;">
-        <div class="expertise-icon" data-icon="⬡" style="margin: 0 auto 1.5rem;"></div>
+        <div class="expertise-icon" style="margin: 0 auto 1.5rem;">🎓</div>
         <h3 style="text-align: center;">Efrei Paris</h3>
         <p style="text-align: center; margin-bottom: 1.5rem;">
           École d'ingénieurs spécialisée en technologies numériques et cybersécurité
         </p>
         <ul class="expertise-list">
-          <li>Mastère Expert en Cybersécurité</li>
-          <li>Spécialisation Gouvernance & Audit</li>
+          <li>Master Of Science</li>
+          <li>Spécialisation Cybersécurité & Intelligence Artificielle</li>
           <li>Formation continue et certifications</li>
           <li>Veille technologique permanente</li>
         </ul>
@@ -795,10 +743,10 @@
     </p>
     <div class="hero-cta" style="justify-content: center;">
       <a href="contact.html" class="cta-button">
-        <span class="icon">✉</span> Prendre contact
+        📧 Prendre contact
       </a>
       <a href="certifications.html" class="cta-button cta-secondary">
-        <span class="icon">◈</span> Voir mes certifications
+        🎓 Voir mes certifications
       </a>
     </div>
   </section>
