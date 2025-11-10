@@ -3,549 +3,174 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contactez Christian ESAKI pour vos besoins en cybersécurité - Expert en sécurité des systèmes d'information">
-  <title>Contact - Christian ESAKI | Expert Cybersécurité</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/navbar.css">
-  
+  <title>Contact | Christian ESAKI</title>
+
+  <!-- Ton style principal -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Script EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- Navbar externe -->
+  <script src="navbar.js" defer></script>
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #1f2937;
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-
-    /* Section principale */
+    /* --- Ajout léger pour le formulaire --- */
     .contact-section {
-      padding: 6rem 1.5rem 4rem;
-      max-width: 1200px;
-      margin: 0 auto;
+      max-width: 700px;
+      margin: 100px auto;
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.08);
     }
 
-    .section-header {
+    .contact-section h2 {
       text-align: center;
-      margin-bottom: 4rem;
-      animation: fadeInDown 0.8s ease;
-    }
-
-    .section-title {
-      font-size: 2.8rem;
-      color: #ffffff;
+      color: #0f172a;
+      font-size: 2rem;
       font-weight: 800;
       margin-bottom: 1rem;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     }
 
-    .section-subtitle {
-      color: #f1f5f9;
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.8;
+    .contact-section p {
+      text-align: center;
+      color: #475569;
+      margin-bottom: 2rem;
     }
 
-    /* Grid de contact */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 2.5rem;
-      margin-bottom: 4rem;
-    }
-
-    @media (max-width: 968px) {
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Carte d'information */
-    .contact-card {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 2.5rem;
-      border-radius: 1.5rem;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-      animation: fadeInLeft 0.8s ease;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .contact-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 70px rgba(0,0,0,0.2);
-    }
-
-    .contact-card h2 {
-      font-size: 1.8rem;
-      color: #0f172a;
-      margin-bottom: 1.5rem;
-      font-weight: 700;
-      border-bottom: 3px solid #667eea;
-      padding-bottom: 0.5rem;
-      display: inline-block;
-    }
-
-    .contact-info-item {
-      display: flex;
-      align-items: center;
-      margin: 1.2rem 0;
-      padding: 1rem;
-      background: #f8fafc;
-      border-radius: 0.75rem;
-      transition: background 0.3s ease;
-    }
-
-    .contact-info-item:hover {
-      background: #e0e7ff;
-    }
-
-    .contact-icon {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 1rem;
-      flex-shrink: 0;
-    }
-
-    .contact-icon::before {
-      content: "📧";
-      font-size: 1.2rem;
-    }
-
-    .contact-icon.linkedin::before { content: "💼"; }
-    .contact-icon.github::before { content: "👨‍💻"; }
-    .contact-icon.location::before { content: "📍"; }
-    .contact-icon.status::before { content: "✅"; }
-
-    .contact-info-item a {
-      color: #2563eb;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    .contact-info-item a:hover {
-      color: #1d4ed8;
-      text-decoration: underline;
-    }
-
-    .availability-badge {
-      display: inline-block;
-      background: #10b981;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 2rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-top: 1rem;
-    }
-
-    /* Formulaire */
-    .form-card {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 2.5rem;
-      border-radius: 1.5rem;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-      animation: fadeInRight 0.8s ease;
-    }
-
-    .form-card h2 {
-      font-size: 1.8rem;
-      color: #0f172a;
-      margin-bottom: 1.5rem;
-      font-weight: 700;
-    }
-
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    @media (max-width: 640px) {
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
+    form .form-group {
+      margin-bottom: 1.3rem;
     }
 
     label {
       font-weight: 600;
-      color: #1e293b;
+      color: #0f172a;
+      display: block;
       margin-bottom: 0.5rem;
-      font-size: 0.95rem;
     }
 
     input, textarea {
-      padding: 0.9rem 1.2rem;
-      border: 2px solid #e2e8f0;
-      border-radius: 0.75rem;
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
       font-size: 1rem;
-      background: #ffffff;
-      transition: all 0.3s ease;
       font-family: inherit;
+      transition: border-color 0.2s ease-in-out;
     }
 
     input:focus, textarea:focus {
-      border-color: #667eea;
-      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+      border-color: #f59e0b;
       outline: none;
-      transform: translateY(-2px);
     }
 
-    textarea {
-      resize: vertical;
-      min-height: 150px;
-    }
-
-    .btn-submit {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #fff;
-      border: none;
-      padding: 1.1rem 2.5rem;
-      border-radius: 0.75rem;
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 1.05rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .btn-submit:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
-    }
-
-    .btn-submit:active {
-      transform: translateY(-1px);
-    }
-
-    /* Newsletter */
-    .newsletter-section {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 3rem 2.5rem;
-      border-radius: 1.5rem;
-      text-align: center;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-      animation: fadeInUp 0.8s ease;
-      margin-bottom: 4rem;
-    }
-
-    .newsletter-section h3 {
-      font-size: 1.8rem;
-      color: #0f172a;
-      margin-bottom: 1rem;
-      font-weight: 700;
-    }
-
-    .newsletter-section p {
-      color: #64748b;
-      margin-bottom: 2rem;
-      font-size: 1.05rem;
-    }
-
-    .newsletter-form {
-      display: flex;
-      gap: 1rem;
-      max-width: 500px;
-      margin: 0 auto;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .newsletter-form input {
-      flex: 1;
-      min-width: 250px;
-      padding: 1rem 1.5rem;
-      border: 2px solid #e2e8f0;
-      border-radius: 0.75rem;
-      font-size: 1rem;
-    }
-
-    .btn-newsletter {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    button[type="submit"] {
+      background: #f59e0b;
       color: white;
+      font-weight: 600;
+      padding: 0.9rem 1.6rem;
       border: none;
-      padding: 1rem 2rem;
-      border-radius: 0.75rem;
+      border-radius: 10px;
       cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-    }
-
-    .btn-newsletter:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
-    }
-
-    /* Footer */
-    footer {
-      background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(10px);
-      color: #cbd5e1;
-      text-align: center;
-      padding: 2.5rem 1.5rem;
-      border-radius: 1.5rem 1.5rem 0 0;
-    }
-
-    footer a {
-      color: #818cf8;
-      text-decoration: none;
-      margin: 0 0.8rem;
-      transition: color 0.3s ease;
-    }
-
-    footer a:hover {
-      color: #a5b4fc;
-      text-decoration: underline;
-    }
-
-    .footer-links {
-      margin-bottom: 1.5rem;
-      font-size: 1.05rem;
-    }
-
-    /* Animations */
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes fadeInRight {
-      from {
-        opacity: 0;
-        transform: translateX(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Message de confirmation */
-    .success-message {
-      display: none;
-      background: #10b981;
-      color: white;
-      padding: 1rem;
-      border-radius: 0.75rem;
-      margin-top: 1rem;
-      text-align: center;
-      font-weight: 600;
-    }
-
-    .success-message.show {
+      transition: background 0.25s ease-in-out;
       display: block;
-      animation: fadeInUp 0.5s ease;
+      margin: 0 auto;
+    }
+
+    button[type="submit"]:hover {
+      background: #d97706;
+    }
+
+    #status-message {
+      text-align: center;
+      margin-top: 1.2rem;
+      font-weight: 600;
     }
   </style>
 </head>
 
 <body>
+
+  <!-- Navbar (chargée depuis navbar.html via navbar.js) -->
   <div id="navbar-placeholder"></div>
 
-  <main class="contact-section">
-    <header class="section-header">
-      <h1 class="section-title">Prenons Contact</h1>
-      <p class="section-subtitle">
-        Vous avez un projet de cybersécurité ? Une question ? 
-        Je suis disponible pour échanger sur vos besoins en sécurité informatique.
-      </p>
-    </header>
+  <!-- Section Contact -->
+  <section class="contact-section">
+    <h2>📬 Me Contacter</h2>
+    <p>Laissez-moi un message, je vous répondrai rapidement.</p>
 
-    <div class="contact-grid">
-      <!-- Informations de contact -->
-      <div class="contact-card">
-        <h2>Informations</h2>
-        
-        <div class="contact-info-item">
-          <div class="contact-icon"></div>
-          <div>
-            <strong>Email</strong><br>
-            <a href="mailto:christian.esaki@gmail.com">christian.esaki@gmail.com</a>
-          </div>
-        </div>
-
-        <div class="contact-info-item">
-          <div class="contact-icon linkedin"></div>
-          <div>
-            <strong>LinkedIn</strong><br>
-            <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" target="_blank" rel="noopener">
-              christian-esaki-mundeke
-            </a>
-          </div>
-        </div>
-
-        <div class="contact-info-item">
-          <div class="contact-icon github"></div>
-          <div>
-            <strong>GitHub</strong><br>
-            <a href="https://github.com/christian-esaki1/" target="_blank" rel="noopener">
-              christian-esaki1
-            </a>
-          </div>
-        </div>
-
-        <div class="contact-info-item">
-          <div class="contact-icon location"></div>
-          <div>
-            <strong>Localisation</strong><br>
-            Paris, France
-          </div>
-        </div>
-
-        <div class="contact-info-item">
-          <div class="contact-icon status"></div>
-          <div>
-            <strong>Disponibilité</strong><br>
-            CDI ou missions en cybersécurité
-          </div>
-        </div>
-
-        <div class="availability-badge">
-          🟢 Disponible immédiatement
-        </div>
+    <form id="contact-form">
+      <div class="form-group">
+        <label for="name">Nom complet</label>
+        <input type="text" id="name" name="name" placeholder="Votre nom" required>
       </div>
 
-      <!-- Formulaire de contact -->
-      <div class="form-card">
-        <h2>Envoyez-moi un message</h2>
-        
-        <form class="contact-form" id="contactForm" method="POST" action="https://formspree.io/f/mrbgzvvg">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="firstname">Prénom *</label>
-              <input type="text" id="firstname" name="firstname" required placeholder="Votre prénom">
-            </div>
-
-            <div class="form-group">
-              <label for="lastname">Nom *</label>
-              <input type="text" id="lastname" name="lastname" required placeholder="Votre nom">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email *</label>
-            <input type="email" id="email" name="email" required placeholder="votre.email@exemple.com">
-          </div>
-
-          <div class="form-group">
-            <label for="subject">Sujet *</label>
-            <input type="text" id="subject" name="subject" required placeholder="Ex: Collaboration, question, offre d'emploi...">
-          </div>
-
-          <div class="form-group">
-            <label for="message">Message *</label>
-            <textarea id="message" name="message" required placeholder="Décrivez votre demande ou projet..."></textarea>
-          </div>
-
-          <button type="submit" class="btn-submit">Envoyer le message</button>
-          
-          <div class="success-message" id="successMessage">
-            ✓ Message envoyé avec succès ! Je vous répondrai rapidement.
-          </div>
-        </form>
+      <div class="form-group">
+        <label for="email">Adresse e-mail</label>
+        <input type="email" id="email" name="email" placeholder="votre@email.com" required>
       </div>
-    </div>
 
-    <!-- Newsletter -->
-    <section class="newsletter-section">
-      <h3>📬 Newsletter Cybersécurité</h3>
-      <p>Recevez mes derniers articles, analyses et conseils en sécurité informatique</p>
-      
-      <form class="newsletter-form" id="newsletterForm">
-        <input type="email" placeholder="votre.email@exemple.com" required>
-        <button type="submit" class="btn-newsletter">S'abonner</button>
-      </form>
-      
-      <p style="font-size: 0.85rem; color: #64748b; margin-top: 1rem;">
-        Pas de spam. Vous pouvez vous désinscrire à tout moment.
-      </p>
-    </section>
-  </main>
+      <div class="form-group">
+        <label for="title">Objet</label>
+        <input type="text" id="title" name="title" placeholder="Sujet du message" required>
+      </div>
 
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="6" placeholder="Votre message ici..." required></textarea>
+      </div>
+
+      <button type="submit" id="send-button">Envoyer le message</button>
+    </form>
+
+    <p id="status-message"></p>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <div class="footer-links">
-      <a href="mentions-legales.html">Mentions légales</a> |
-      <a href="confidentialite.html">Confidentialité</a> |
-      <a href="mailto:christian.esaki@gmail.com">Contact direct</a>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/christian-esaki1/" target="_blank">GitHub</a>
+      <a href="mailto:christian.esaki@gmail.com">Email</a>
     </div>
-    <p>© 2025 Christian ESAKI MUNDEKE — Expert en Cybersécurité</p>
+    <p>© 2025 Christian ESAKI MUNDEKE — Tous droits réservés</p>
   </footer>
 
-  <script src="js/navbar.js"></script>
+  <!-- Script EmailJS -->
   <script>
-    // Gestion du formulaire de contact
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      // Laisser Formspree gérer la soumission
-      setTimeout(() => {
-        document.getElementById('successMessage').classList.add('show');
-        setTimeout(() => {
-          document.getElementById('successMessage').classList.remove('show');
-        }, 5000);
-      }, 100);
-    });
+    // Initialise EmailJS
+    (function() {
+      emailjs.init({
+        publicKey: "nIlcL-gfPXeauoltg", // Remplace par ta clé publique
+      });
+    })();
 
-    // Gestion de la newsletter
-    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Merci pour votre inscription ! Vous recevrez bientôt nos actualités cybersécurité.');
-      this.reset();
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('status-message');
+    const sendButton = document.getElementById('send-button');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      sendButton.disabled = true;
+      sendButton.textContent = 'Envoi en cours...';
+
+      emailjs.sendForm('service_xi6o2o3', 'template_1pqy4wk', this)
+        .then(() => {
+          status.style.color = '#10b981';
+          status.textContent = "✅ Merci, votre message a bien été envoyé !";
+          form.reset();
+        }, (error) => {
+          status.style.color = '#ef4444';
+          status.textContent = "❌ Une erreur est survenue. Réessayez plus tard.";
+          console.error('EmailJS error:', error);
+        })
+        .finally(() => {
+          sendButton.disabled = false;
+          sendButton.textContent = 'Envoyer le message';
+        });
     });
   </script>
+
 </body>
 </html>
