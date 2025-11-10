@@ -3,174 +3,678 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact | Christian ESAKI</title>
-
-  <!-- Ton style principal -->
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Script EmailJS -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-  <!-- Navbar externe -->
-  <script src="navbar.js" defer></script>
-
+  <meta name="description" content="Contactez Christian ESAKI pour vos besoins en cybersécurité - Expert en sécurité des systèmes d'information">
+  <title>Contact - Christian ESAKI | Expert Cybersécurité</title>
+  
+  <!-- Sécurité DevSecOps -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="index,follow">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  
   <style>
-    /* --- Ajout léger pour le formulaire --- */
-    .contact-section {
-      max-width: 700px;
-      margin: 100px auto;
-      background: #ffffff;
-      padding: 2rem;
-      border-radius: 16px;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .contact-section h2 {
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #1f2937;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Section principale */
+    .contact-section {
+      padding: 6rem 1.5rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
       text-align: center;
-      color: #0f172a;
-      font-size: 2rem;
+      margin-bottom: 4rem;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    .section-title {
+      font-size: 2.8rem;
+      color: #ffffff;
       font-weight: 800;
       margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     }
 
-    .contact-section p {
-      text-align: center;
-      color: #475569;
-      margin-bottom: 2rem;
+    .section-subtitle {
+      color: #f1f5f9;
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
     }
 
-    form .form-group {
-      margin-bottom: 1.3rem;
+    /* Grid de contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+    }
+
+    @media (max-width: 968px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Carte d'information */
+    .contact-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 2.5rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      animation: fadeInLeft 0.8s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 70px rgba(0,0,0,0.2);
+    }
+
+    .contact-card h2 {
+      font-size: 1.8rem;
+      color: #0f172a;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      margin: 1.2rem 0;
+      padding: 1rem;
+      background: #f8fafc;
+      border-radius: 0.75rem;
+      transition: background 0.3s ease;
+    }
+
+    .contact-info-item:hover {
+      background: #e0e7ff;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      flex-shrink: 0;
+      font-size: 1.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-icon::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
+      transform: rotate(45deg);
+      animation: shine 3s ease-in-out infinite;
+    }
+
+    .contact-icon::after {
+      content: attr(data-icon);
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    .contact-info-item a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .contact-info-item a:hover {
+      color: #1d4ed8;
+      text-decoration: underline;
+    }
+
+    .availability-badge {
+      display: inline-block;
+      background: #10b981;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+
+    /* Formulaire */
+    .form-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 2.5rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      animation: fadeInRight 0.8s ease;
+    }
+
+    .form-card h2 {
+      font-size: 1.8rem;
+      color: #0f172a;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
     }
 
     label {
       font-weight: 600;
-      color: #0f172a;
-      display: block;
+      color: #1e293b;
       margin-bottom: 0.5rem;
+      font-size: 0.95rem;
     }
 
     input, textarea {
-      width: 100%;
-      padding: 0.8rem;
-      border-radius: 10px;
-      border: 1px solid #d1d5db;
+      padding: 0.9rem 1.2rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 0.75rem;
       font-size: 1rem;
+      background: #ffffff;
+      transition: all 0.3s ease;
       font-family: inherit;
-      transition: border-color 0.2s ease-in-out;
     }
 
     input:focus, textarea:focus {
-      border-color: #f59e0b;
+      border-color: #667eea;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
       outline: none;
+      transform: translateY(-2px);
     }
 
-    button[type="submit"] {
-      background: #f59e0b;
-      color: white;
-      font-weight: 600;
-      padding: 0.9rem 1.6rem;
+    textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
       border: none;
-      border-radius: 10px;
+      padding: 1.1rem 2.5rem;
+      border-radius: 0.75rem;
       cursor: pointer;
-      transition: background 0.25s ease-in-out;
-      display: block;
-      margin: 0 auto;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
     }
 
-    button[type="submit"]:hover {
-      background: #d97706;
+    .btn-submit::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
     }
 
-    #status-message {
-      text-align: center;
-      margin-top: 1.2rem;
+    .btn-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-submit:hover::before {
+      left: 100%;
+    }
+
+    .btn-submit:active {
+      transform: translateY(-1px);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Messages d'état */
+    .message-container {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 0.75rem;
       font-weight: 600;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+
+    .message-container.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .message-container.success {
+      background: #d1fae5;
+      color: #065f46;
+      border: 2px solid #10b981;
+    }
+
+    .message-container.error {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 2px solid #ef4444;
+    }
+
+    /* Newsletter */
+    .newsletter-section {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 3rem 2.5rem;
+      border-radius: 1.5rem;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      animation: fadeInUp 0.8s ease;
+      margin-bottom: 4rem;
+    }
+
+    .newsletter-section h3 {
+      font-size: 1.8rem;
+      color: #0f172a;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .newsletter-section p {
+      color: #64748b;
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      min-width: 250px;
+      padding: 1rem 1.5rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+    }
+
+    .btn-newsletter {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .btn-newsletter:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      color: #cbd5e1;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      border-radius: 1.5rem 1.5rem 0 0;
+    }
+
+    footer a {
+      color: #818cf8;
+      text-decoration: none;
+      margin: 0 0.8rem;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #a5b4fc;
+      text-decoration: underline;
+    }
+
+    .footer-links {
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- Navbar (chargée depuis navbar.html via navbar.js) -->
   <div id="navbar-placeholder"></div>
 
-  <!-- Section Contact -->
-  <section class="contact-section">
-    <h2>📬 Me Contacter</h2>
-    <p>Laissez-moi un message, je vous répondrai rapidement.</p>
+  <main class="contact-section">
+    <header class="section-header">
+      <h1 class="section-title">Prenons Contact</h1>
+      <p class="section-subtitle">
+        Vous avez un projet de cybersécurité ? Une question ? 
+        Je suis disponible pour échanger sur vos besoins en sécurité informatique.
+      </p>
+    </header>
 
-    <form id="contact-form">
-      <div class="form-group">
-        <label for="name">Nom complet</label>
-        <input type="text" id="name" name="name" placeholder="Votre nom" required>
+    <div class="contact-grid">
+      <!-- Informations de contact -->
+      <div class="contact-card">
+        <h2>Informations</h2>
+        
+        <div class="contact-info-item">
+          <div class="contact-icon" data-icon="✉"></div>
+          <div>
+            <strong>Email</strong><br>
+            <a href="mailto:christian.esaki@gmail.com">christian.esaki@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-icon" data-icon="◈"></div>
+          <div>
+            <strong>LinkedIn</strong><br>
+            <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" target="_blank" rel="noopener">
+              christian-esaki-mundeke
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-icon" data-icon="⬢"></div>
+          <div>
+            <strong>GitHub</strong><br>
+            <a href="https://github.com/christian-esaki1/" target="_blank" rel="noopener">
+              christian-esaki1
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-icon" data-icon="◬"></div>
+          <div>
+            <strong>Localisation</strong><br>
+            Paris, France
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-icon" data-icon="◉"></div>
+          <div>
+            <strong>Disponibilité</strong><br>
+            CDI ou missions en cybersécurité
+          </div>
+        </div>
+
+        <div class="availability-badge">
+          🟢 Disponible immédiatement
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="email">Adresse e-mail</label>
-        <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+      <!-- Formulaire de contact avec EmailJS -->
+      <div class="form-card">
+        <h2>Envoyez-moi un message</h2>
+        
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstname">Prénom *</label>
+              <input type="text" id="firstname" name="firstname" required placeholder="Votre prénom">
+            </div>
+
+            <div class="form-group">
+              <label for="lastname">Nom *</label>
+              <input type="text" id="lastname" name="lastname" required placeholder="Votre nom">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required placeholder="votre.email@exemple.com">
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Sujet *</label>
+            <input type="text" id="subject" name="subject" required placeholder="Ex: Collaboration, question, offre d'emploi...">
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" required placeholder="Décrivez votre demande ou projet..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitBtn">Envoyer le message</button>
+          
+          <div class="message-container" id="messageContainer"></div>
+        </form>
       </div>
-
-      <div class="form-group">
-        <label for="title">Objet</label>
-        <input type="text" id="title" name="title" placeholder="Sujet du message" required>
-      </div>
-
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="6" placeholder="Votre message ici..." required></textarea>
-      </div>
-
-      <button type="submit" id="send-button">Envoyer le message</button>
-    </form>
-
-    <p id="status-message"></p>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="social-links">
-      <a href="https://www.linkedin.com/in/christian-esaki-mundeke/" target="_blank">LinkedIn</a>
-      <a href="https://github.com/christian-esaki1/" target="_blank">GitHub</a>
-      <a href="mailto:christian.esaki@gmail.com">Email</a>
     </div>
-    <p>© 2025 Christian ESAKI MUNDEKE — Tous droits réservés</p>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+      <h3>📬 Newsletter Cybersécurité</h3>
+      <p>Recevez mes derniers articles, analyses et conseils en sécurité informatique</p>
+      
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="votre.email@exemple.com" required>
+        <button type="submit" class="btn-newsletter">S'abonner</button>
+      </form>
+      
+      <p style="font-size: 0.85rem; color: #64748b; margin-top: 1rem;">
+        Pas de spam. Vous pouvez vous désinscrire à tout moment.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Accueil</a> |
+      <a href="parcours.html">Parcours</a> |
+      <a href="projets.html">Projets</a> |
+      <a href="certifications.html">Certifications</a>
+    </div>
+    <p>© 2025 Christian ESAKI MUNDEKE — Expert en Cybersécurité</p>
   </footer>
 
-  <!-- Script EmailJS -->
+  <script src="js/navbar.js"></script>
   <script>
-    // Initialise EmailJS
+    // ============================================
+    // CONFIGURATION EMAILJS
+    // ============================================
+    // Remplacez ces valeurs par vos propres identifiants EmailJS
+    const EMAIL_PUBLIC_KEY = "nIlcL-gfPXeauoltg";  // Trouvé dans Account > General
+    const EMAIL_SERVICE_ID = "service_xi6o2o3";  // Trouvé dans Email Services
+    const EMAIL_TEMPLATE_ID = "template_1pqy4wk"; // Trouvé dans Email Templates
+
+    // Initialiser EmailJS
     (function() {
-      emailjs.init({
-        publicKey: "nIlcL-gfPXeauoltg", // Remplace par ta clé publique
-      });
+      emailjs.init(EMAIL_PUBLIC_KEY);
     })();
 
-    const form = document.getElementById('contact-form');
-    const status = document.getElementById('status-message');
-    const sendButton = document.getElementById('send-button');
+    // ============================================
+    // GESTION DU FORMULAIRE DE CONTACT
+    // ============================================
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const messageContainer = document.getElementById('messageContainer');
 
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-      sendButton.disabled = true;
-      sendButton.textContent = 'Envoi en cours...';
-
-      emailjs.sendForm('service_xi6o2o3', 'template_1pqy4wk', this)
-        .then(() => {
-          status.style.color = '#10b981';
-          status.textContent = "✅ Merci, votre message a bien été envoyé !";
-          form.reset();
-        }, (error) => {
-          status.style.color = '#ef4444';
-          status.textContent = "❌ Une erreur est survenue. Réessayez plus tard.";
-          console.error('EmailJS error:', error);
-        })
-        .finally(() => {
-          sendButton.disabled = false;
-          sendButton.textContent = 'Envoyer le message';
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Désactiver le bouton pendant l'envoi
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Envoi en cours...';
+      
+      // Envoyer le formulaire via EmailJS
+      emailjs.sendForm(EMAIL_SERVICE_ID, EMAIL_TEMPLATE_ID, this)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          
+          // Afficher le message de succès
+          showMessage('✓ Message envoyé avec succès ! Je vous répondrai rapidement.', 'success');
+          
+          // Réinitialiser le formulaire
+          contactForm.reset();
+          
+          // Réactiver le bouton
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Envoyer le message';
+        }, function(error) {
+          console.log('FAILED...', error);
+          
+          // Afficher le message d'erreur
+          showMessage('✗ Une erreur est survenue. Veuillez réessayer ou me contacter par email.', 'error');
+          
+          // Réactiver le bouton
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Envoyer le message';
         });
     });
-  </script>
 
+    // Fonction pour afficher les messages
+    function showMessage(text, type) {
+      messageContainer.textContent = text;
+      messageContainer.className = `message-container ${type} show`;
+      
+      // Masquer le message après 5 secondes
+      setTimeout(() => {
+        messageContainer.classList.remove('show');
+      }, 5000);
+    }
+
+    // ============================================
+    // GESTION DE LA NEWSLETTER
+    // ============================================
+    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Merci pour votre inscription ! Vous recevrez bientôt nos actualités cybersécurité.');
+      this.reset();
+    });
+  </script>
 </body>
 </html>
